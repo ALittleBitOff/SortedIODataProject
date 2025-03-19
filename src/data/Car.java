@@ -7,33 +7,33 @@ public class Car implements Comparable<Car>, Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private int HorsePower;
-    private String Model;
-    private int ReleaseYear;
+    private int horsePower;
+    private String model;
+    private int releaseYear;
 
     private Car(Builder builder) {
-        this.HorsePower = builder.HorsePower;
-        this.Model = builder.Model;
-        this.ReleaseYear = builder.ReleaseYear;
+        this.horsePower = builder.horsePower;
+        this.model = builder.model;
+        this.releaseYear = builder.releaseYear;
     }
 
     public static class Builder {
-        private int HorsePower;
-        private String Model;
-        private int ReleaseYear;
+        private int horsePower;
+        private String model;
+        private int releaseYear;
 
-        public Builder setHorsePower(int horsePower) {
-            this.HorsePower = horsePower;
+        public Builder sethorsePower(int horsePower) {
+            this.horsePower = horsePower;
             return this;
         }
 
-        public Builder setModel(String model) {
-            this.Model = model;
+        public Builder setmodel(String model) {
+            this.model = model;
             return this;
         }
 
-        public Builder setReleaseYear(int releaseYear) {
-            this.ReleaseYear = releaseYear;
+        public Builder setreleaseYear(int releaseYear) {
+            this.releaseYear = releaseYear;
             return this;
         }
 
@@ -45,14 +45,14 @@ public class Car implements Comparable<Car>, Serializable {
     @Override
     public String toString() {
         return "Машина {" +
-                "Мощность: " + HorsePower +
-                ", Модель: " + Model +
-                ", Год выпуска: " + ReleaseYear +
+                "Мощность: " + horsePower +
+                ", Модель: " + model +
+                ", Год выпуска: " + releaseYear +
                 "}";
     }
 
     @Override
     public int compareTo(Car otherCar) {
-        return Integer.compare(this.HorsePower, otherCar.HorsePower);
+        return Integer.compare(this.horsePower, otherCar.horsePower);
     }
 }
