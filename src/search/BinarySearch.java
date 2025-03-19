@@ -1,4 +1,4 @@
-package sort;
+package search;
 
 public class BinarySearch<T extends Comparable<T>> implements Searchable<T> {
     @Override
