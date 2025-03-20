@@ -44,6 +44,20 @@ public class Book implements Comparable<Book>, Serializable {
 
     @Override
     public int compareTo(Book otherBook) {
+
+        // 1. Сравнение по автору
+        int authorComparison = this.author.compareTo(otherBook.author);
+        if (authorComparison != 0) {
+            return authorComparison;
+        }
+
+        // 2. Сравнение по названию
+        int titleComparison = this.title.compareTo(otherBook.title);
+        if (titleComparison != 0) {
+            return titleComparison;
+        }
+
+        // 3. Сравнение по количеству страниц
         return Integer.compare(this.pageCount, otherBook.pageCount);
     }
 

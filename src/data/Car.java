@@ -43,16 +43,30 @@ public class Car implements Comparable<Car>, Serializable {
     }
 
     @Override
+    public int compareTo(Car otherCar) {
+
+        // 1. Сравнение по мощности
+        int powerComparison = Integer.compare(this.horsePower, otherCar.horsePower);
+        if (powerComparison != 0) {
+            return powerComparison;
+        }
+
+        // 2. Сравнение по модели
+        int modelComparison = this.model.compareTo(otherCar.model);
+        if (modelComparison != 0) {
+            return modelComparison;
+        }
+
+        // 3. Сравнение по году
+        return Integer.compare(this.releaseYear, otherCar.releaseYear);
+    }
+
+    @Override
     public String toString() {
         return "Машина {" +
                 "Мощность: " + horsePower +
                 ", Модель: " + model +
                 ", Год выпуска: " + releaseYear +
                 "}";
-    }
-
-    @Override
-    public int compareTo(Car otherCar) {
-        return Integer.compare(this.horsePower, otherCar.horsePower);
     }
 }

@@ -44,7 +44,21 @@ public class Korneplod implements Comparable<Korneplod>, Serializable {
 
     @Override
     public int compareTo(Korneplod otherKorneplod) {
-        return Double.compare(this.weight, otherKorneplod.weight);
+
+        // 1. Сравнение по типу
+        int typeComparison = this.type.compareTo(otherKorneplod.type);
+        if (typeComparison != 0) {
+            return typeComparison;
+        }
+
+        // 2. Сравнение по весу
+        int weightComparison = Double.compare(this.weight, otherKorneplod.weight);
+        if (weightComparison != 0) {
+            return weightComparison;
+        }
+
+        // 3. Сравнение по цвету
+        return this.color.compareTo(otherKorneplod.color);
     }
 
     @Override
