@@ -19,3 +19,39 @@ public class BinarySearch<T extends Comparable<T>> implements Searchable<T> {
         return -1;
     }
 }
+/*
+Пример использования
+
+public class BinarySearchTest {
+    public static void main(String[] args) {
+        // Создание экземпляра BinarySearch
+        BinarySearch<Integer> binarySearch = new BinarySearch<>();
+
+        // Создание и сортировка массива
+        Integer[] sortedArray = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21};
+
+        // Элемент для поиска
+        Integer key = 11;
+
+        // Выполнение бинарного поиска
+        int index = binarySearch.binarySearch(sortedArray, key);
+
+        // Вывод результата
+        if (index != -1) {
+            System.out.println("Элемент " + key + " найден по индексу: " + index);
+        } else {
+            System.out.println("Элемент " + key + " не найден в массиве.");
+        }
+
+        // Попробуем найти элемент, которого нет в массиве
+        key = 4;
+        index = binarySearch.binarySearch(sortedArray, key);
+
+        if (index != -1) {
+            System.out.println("Элемент " + key + " найден по индексу: " + index);
+        } else {
+            System.out.println("Элемент " + key + " не найден в массиве.");
+        }
+    }
+}
+*/
