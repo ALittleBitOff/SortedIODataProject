@@ -1,30 +1,45 @@
+import io.BookInputHandler;
+import io.CarInputHandler;
+import io.DataInputHandler;
+import io.KornepodInputHandler;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Выберите тип ввода данных для сортировки");
-        System.out.println("1 - ввод из файла");
-        System.out.println("2 - ввод случайных данных");
-        System.out.println("3 - ввод данных в ручную");
         Scanner scanner = new Scanner(System.in);
-        int choice = scanner.nextInt();
-        switch (choice) {
-            case 1:
-                System.out.println("Выбран ввод из файла.");
-                // Здесь можно добавить логику для ввода данных из файла
-                break;
-            case 2:
-                System.out.println("Выбран ввод случайных данных.");
-                // Здесь можно добавить логику для генерации случайных данных
-                break;
-            case 3:
-                System.out.println("Выбран ввод данных вручную.");
-                // Здесь можно добавить логику для ручного ввода данных
-                break;
-            default:
-                System.out.println("Неверный выбор. Пожалуйста, выберите 1, 2 или 3.");
-                break;
-        }
+        int choice;
 
+        // Создаем карту для хранения обработчиков ввода
+        Map<Integer, DataInputHandler> inputHandlers = new HashMap<>();
+        inputHandlers.put(1, new CarInputHandler());
+         inputHandlers.put(2, new BookInputHandler());
+         inputHandlers.put(3, new KornepodInputHandler());
+
+        do {
+            System.out.println("Выберите тип ввода данных для сортировки:");
+            System.out.println("1 - тип данных автомобиль");
+            System.out.println("2 - тип данных книга");
+            System.out.println("3 - тип данных корнеплод");
+            System.out.println("4 - выход из программы");
+
+            choice = scanner.nextInt();
+
+            if (choice == 4) {
+                System.out.println("Выход из программы.");
+                break;
+            }
+
+            DataInputHandler handler = inputHandlers.get(choice);
+            if (handler != null) {
+                handler.handleInput(scanner);
+            } else {
+                System.out.println("Неверный выбор. Пожалуйста, выберите снова.");
+            }
+        } while (true);
+
+        scanner.close();
     }
 }
