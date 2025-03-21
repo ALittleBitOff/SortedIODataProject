@@ -2,8 +2,9 @@ package io;
 
 import data.Car;
 import io.manualInput.CarDataInput;
-import io.manualInput.DataInputHandler;
-
+import io.textInput.FileReaderDataInput;
+import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 public class CarInputHandler implements DataInputHandler {
@@ -19,6 +20,12 @@ public class CarInputHandler implements DataInputHandler {
             case 1:
                 System.out.println("Ввод данных для автомобиля из файла.");
                 // Логика для ввода из файла
+                try{
+                    dataTextInputArray(scanner);
+                }
+                catch (IOException e){
+                    System.out.println(e.getMessage());
+                }
                 break;
             case 2:
                 System.out.println("Ввод случайных данных для автомобиля.");
@@ -41,6 +48,21 @@ public class CarInputHandler implements DataInputHandler {
 
         // Создание массива автомобилей
         Car[] cars = CarDataInput.createCarArrayFromConsole(length);
+
+        // Вывод созданных автомобилей
+        System.out.println("Список автомобилей:");
+        for (Car car : cars) {
+            System.out.println(car);
+        }
+    }
+
+    @Override
+    public void dataTextInputArray(Scanner scanner) throws IOException {
+        System.out.print("Введите название файла *name* .txt: ");
+        String filePath = "src/test/resoursec/car/"+scanner.next()+".txt";
+        scanner.nextLine();
+        System.out.println(filePath);
+        List<Car> cars = FileReaderDataInput.readCarsFromFile(filePath);
 
         // Вывод созданных автомобилей
         System.out.println("Список автомобилей:");
