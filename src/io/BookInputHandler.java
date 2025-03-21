@@ -1,11 +1,6 @@
 package io;
 
 import data.Book;
-import io.manualInput.BookDataInput;
-import io.textInput.FileReaderDataInput;
-
-import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 public class BookInputHandler implements DataInputHandler {
@@ -21,12 +16,6 @@ public class BookInputHandler implements DataInputHandler {
             case 1:
                 System.out.println("Ввод данных из файла.");
                 // Логика для ввода из файла
-                try{
-                    dataTextInputArray(scanner);
-                }
-                catch (IOException e){
-                    System.out.println(e.getMessage());
-                }
                 break;
             case 2:
                 System.out.println("Ввод случайных данных.");
@@ -34,39 +23,23 @@ public class BookInputHandler implements DataInputHandler {
                 break;
             case 3:
                 System.out.println("Ввод данных вручную.");
-                handleManualInputArray(scanner);
+                handleManualInput(scanner);
                 break;
             default:
                 System.out.println("Неверный выбор.");
         }
     }
 
-    @Override
-    public void handleManualInputArray(Scanner scanner) {
+    private void handleManualInput(Scanner scanner) {
         System.out.print("Введите количество книг: ");
         int length = scanner.nextInt();
         scanner.nextLine(); // Очистка буфера
 
-        // Создание массива книг
+        // Создание массива автомобилей
         Book[] books = BookDataInput.createBookArrayFromConsole(length);
 
-        // Вывод созданного списка книг
-        System.out.println("Created cars:");
-        for (Book book : books) {
-            System.out.println(book);
-        }
-    }
-
-    @Override
-    public void dataTextInputArray(Scanner scanner) throws IOException {
-        System.out.print("Введите название файла *name* .txt: ");
-        String filePath = "src/test/resoursec/book/"+scanner.next()+".txt";
-        scanner.nextLine();
-        System.out.println(filePath);
-        List<Book> books = FileReaderDataInput.readBookFromFile(filePath);
-
         // Вывод созданных автомобилей
-        System.out.println("Список автомобилей:");
+        System.out.println("Created cars:");
         for (Book book : books) {
             System.out.println(book);
         }
