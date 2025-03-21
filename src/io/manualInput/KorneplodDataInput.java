@@ -1,4 +1,4 @@
-package io;
+package io.manualInput;
 
 import data.Korneplod;
 import java.util.Scanner;

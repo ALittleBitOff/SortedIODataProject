@@ -1,6 +1,8 @@
 package io;
 
 import data.Car;
+import io.manualInput.CarDataInput;
+import io.manualInput.DataInputHandler;
 
 import java.util.Scanner;
 
@@ -24,14 +26,15 @@ public class CarInputHandler implements DataInputHandler {
                 break;
             case 3:
                 System.out.println("Ввод данных для автомобиля вручную.");
-                handleManualInput(scanner);
+                handleManualInputArray(scanner);
                 break;
             default:
                 System.out.println("Неверный выбор.");
         }
     }
 
-    private void handleManualInput(Scanner scanner) {
+    @Override
+    public void handleManualInputArray(Scanner scanner) {
         System.out.print("Введите количество автомобилей: ");
         int length = scanner.nextInt();
         scanner.nextLine(); // Очистка буфера
@@ -45,4 +48,6 @@ public class CarInputHandler implements DataInputHandler {
             System.out.println(car);
         }
     }
+
+
 }
