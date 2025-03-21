@@ -35,10 +35,10 @@ public class BookInputHandler implements DataInputHandler {
         int length = scanner.nextInt();
         scanner.nextLine(); // Очистка буфера
 
-        // Создание массива автомобилей
+        // Создание массива книг
         Book[] books = BookDataInput.createBookArrayFromConsole(length);
 
-        // Вывод созданных автомобилей
+        // Вывод созданного списка книг
         System.out.println("Created cars:");
         for (Book book : books) {
             System.out.println(book);
