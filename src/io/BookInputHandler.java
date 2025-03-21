@@ -1,6 +1,9 @@
 package io;
 
 import data.Book;
+import io.manualInput.BookDataInput;
+import io.manualInput.DataInputHandler;
+
 import java.util.Scanner;
 
 public class BookInputHandler implements DataInputHandler {
@@ -23,22 +26,23 @@ public class BookInputHandler implements DataInputHandler {
                 break;
             case 3:
                 System.out.println("Ввод данных вручную.");
-                handleManualInput(scanner);
+                handleManualInputArray(scanner);
                 break;
             default:
                 System.out.println("Неверный выбор.");
         }
     }
 
-    private void handleManualInput(Scanner scanner) {
+    @Override
+    public void handleManualInputArray(Scanner scanner) {
         System.out.print("Введите количество книг: ");
         int length = scanner.nextInt();
         scanner.nextLine(); // Очистка буфера
 
-        // Создание массива автомобилей
+        // Создание массива книг
         Book[] books = BookDataInput.createBookArrayFromConsole(length);
 
-        // Вывод созданных автомобилей
+        // Вывод созданного списка книг
         System.out.println("Created cars:");
         for (Book book : books) {
             System.out.println(book);
