@@ -1,6 +1,8 @@
 package io;
 
 import data.Korneplod;
+import io.manualInput.DataInputHandler;
+import io.manualInput.KorneplodDataInput;
 
 import java.util.Scanner;
 
@@ -24,14 +26,15 @@ public class KornepodInputHandler implements DataInputHandler {
                 break;
             case 3:
                 System.out.println("Ввод данных вручную.");
-                handleManualInput(scanner);
+                handleManualInputArray(scanner);
                 break;
             default:
                 System.out.println("Неверный выбор.");
         }
     }
 
-    public void handleManualInput(Scanner scanner) {
+    @Override
+    public void handleManualInputArray(Scanner scanner) {
         System.out.print("Введите количество корнеплодов: ");
         int length = scanner.nextInt();
         scanner.nextLine(); // Очистка буфера

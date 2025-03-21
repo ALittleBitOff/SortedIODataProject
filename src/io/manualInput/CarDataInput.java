@@ -1,9 +1,9 @@
-package io;
+package io.manualInput;
 
 import data.Car;
 import java.util.Scanner;
 
-public class CarDataInput {
+public class CarDataInput{
 
     public static Car createCarFromConsole() {
         Scanner scanner = new Scanner(System.in);
