@@ -1,6 +1,6 @@
 import io.BookInputHandler;
 import io.CarInputHandler;
-import io.manualInput.DataInputHandler;
+import io.DataInputHandler;
 import io.KornepodInputHandler;
 import java.util.HashMap;
 import java.util.Map;
