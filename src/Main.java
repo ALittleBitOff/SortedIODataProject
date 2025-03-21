@@ -15,8 +15,8 @@ public class Main {
         // Создаем карту для хранения обработчиков ввода
         Map<Integer, DataInputHandler> inputHandlers = new HashMap<>();
         inputHandlers.put(1, new CarInputHandler());
-         inputHandlers.put(2, new BookInputHandler());
-         inputHandlers.put(3, new KornepodInputHandler());
+        inputHandlers.put(2, new BookInputHandler());
+        inputHandlers.put(3, new KornepodInputHandler());
 
         do {
             System.out.println("Выберите тип ввода данных для сортировки:");

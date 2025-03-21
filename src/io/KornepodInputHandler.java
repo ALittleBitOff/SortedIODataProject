@@ -36,10 +36,10 @@ public class KornepodInputHandler implements DataInputHandler {
         int length = scanner.nextInt();
         scanner.nextLine(); // Очистка буфера
 
-        // Создание массива автомобилей
+        // Создание массива корнеплодов
         Korneplod[] korneplods = KorneplodDataInput.createKorneplodArrayFromConsole(length);
 
-        // Вывод созданных автомобилей
+        // Вывод созданного списка корнеплодов
         System.out.println("Список корнеплодов:");
         for (Korneplod korneplod : korneplods) {
             System.out.println(korneplod);
