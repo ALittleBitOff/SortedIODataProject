@@ -7,14 +7,44 @@ public class Book implements Comparable<Book>, Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private String author;
-    private String title;
-    private int pageCount;
+    private final String author;
+    private final String title;
+    private final int pageCount;
 
     private Book(Builder builder) {
-        this.author = builder.author;
-        this.title = builder.title;
-        this.pageCount = builder.pageCount;
+        this.author = validateAuthor(builder.author);
+        this.title = validateTitle(builder.title);
+        this.pageCount = validatePages(builder.pageCount);
+    }
+
+    // Валидация автора
+    private String validateAuthor(String author) {
+        if (author == null || author.trim().isEmpty()) {
+            throw new IllegalArgumentException("Имя автора не может быть пустым или null");
+        }
+        if (!author.matches("[a-zA-Zа-яА-Я0-9\\s.'-]+")) {
+            throw new IllegalArgumentException("Имя автора не соответствует регулярному выражению");
+        }
+        return author.trim();
+    }
+
+    // Валидация названия
+    private String validateTitle(String title) {
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalArgumentException("Название книги не может быть пустым или null");
+        }
+        if (!title.matches("[a-zA-Zа-яА-Я0-9\\s\\-'’,.!?]+")) {
+            throw new IllegalArgumentException("Название книги не соответствует регулярному выражению");
+        }
+        return title.trim();
+    }
+
+    // Валидация количества страниц
+    private int validatePages(int pages) {
+        if (pages <= 0) {
+            throw new IllegalArgumentException("Количество страниц должно быть положительным");
+        }
+        return pages;
     }
 
     public static class Builder {

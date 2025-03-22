@@ -7,14 +7,50 @@ public class Korneplod implements Comparable<Korneplod>, Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private String type;
-    private double weight;
-    private String color;
+    private final String type;
+    private final double weight;
+    private final String color;
 
     private Korneplod(Builder builder) {
-        this.type = builder.type;
-        this.weight = builder.weight;
-        this.color = builder.color;
+        this.type = validateType(builder.type);
+        this.weight = validateWeight(builder.weight);
+        this.color = validateColor(builder.color);
+    }
+
+    //Валидация названия корнеплода
+    private String validateType(String type) {
+        if (type == null || type.trim().isEmpty()) {
+            throw new IllegalArgumentException("Название корнеплода не может быть пустым или null");
+        }
+        if (!type.matches("[a-zA-Zа-яА-Я0-9\\s.'-]+")) {
+            throw new IllegalArgumentException("Название корнеплода не соответствует регулярному выражению");
+        }
+        return type.trim();
+    }
+
+    // Валидация массы
+    private double validateWeight(double weight) {
+        if (Double.isNaN(weight)) {
+            throw new IllegalArgumentException("Масса корнеплода не может иметь значение NaN");
+        }
+        if (Double.isInfinite(weight)) {
+            throw new IllegalArgumentException("Масса не может быть бесконечной");
+        }
+        if (weight <= 0) {
+            throw new IllegalArgumentException("Масса должна быть положительной");
+        }
+        return weight;
+    }
+
+    //Валидация цвет корнеплода
+    private String validateColor(String color) {
+        if (color == null || color.trim().isEmpty()) {
+            throw new IllegalArgumentException("Цвет корнеплода не может быть пустым или null");
+        }
+        if (!color.matches("[a-zA-Zа-яА-Я-]+")) {
+            throw new IllegalArgumentException("Цвет корнеплода не соответствует регулярному выражению");
+        }
+        return color.trim();
     }
 
     public static class Builder {

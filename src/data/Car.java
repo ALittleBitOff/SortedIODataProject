@@ -7,14 +7,41 @@ public class Car implements Comparable<Car>, Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private int horsePower;
-    private String model;
-    private int releaseYear;
+    private final int horsePower;
+    private final String model;
+    private final int releaseYear;
 
     private Car(Builder builder) {
-        this.horsePower = builder.horsePower;
-        this.model = builder.model;
-        this.releaseYear = builder.releaseYear;
+        this.horsePower = validatePower(builder.horsePower);
+        this.model = validateModel(builder.model);
+        this.releaseYear =validateYear(builder.releaseYear);
+    }
+
+    // Валидация мощности автомобиля
+    private int validatePower(int horsePower) {
+        if (horsePower <= 0) {
+            throw new IllegalArgumentException("Мощность автомобиля должна быть положительной (л.с.)");
+        }
+        return horsePower;
+    }
+
+    // Валидация названия автомобиля
+    private String validateModel(String model) {
+        if (model == null || model.trim().isEmpty()) {
+            throw new IllegalArgumentException("Название автомобиля не может быть пустым или null");
+        }
+        if (!model.matches("[a-zA-Zа-яА-Я0-9\\s.'-]+")) {
+            throw new IllegalArgumentException("Название автомобиля не соответствует регулярному выражению");
+        }
+        return model.trim();
+    }
+
+    // Валидация года изготовления
+    private int validateYear(int releaseYear) {
+        if (releaseYear <= 1500) {
+            throw new IllegalArgumentException("Год изготовления автомобиля должна быть положительным (л.с.) и не ранее 1500 года");
+        }
+        return releaseYear;
     }
 
     public static class Builder {
