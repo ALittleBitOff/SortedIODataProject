@@ -4,7 +4,6 @@ import CustomList.MyArrayList;
 import data.Book;
 import data.Car;
 import data.Korneplod;
-import sort.ShellSort;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,7 +13,6 @@ public class FileReaderDataInput {
 
     public static MyArrayList<Car> readCarsFromFile(String filePath) throws IOException {
         MyArrayList<Car> myCarList = new MyArrayList<>();
-        ShellSort<Car> shellCarSort = new ShellSort<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -42,15 +40,11 @@ public class FileReaderDataInput {
                 }
             }
         }
-
-        shellCarSort.sort(myCarList);
-
         return myCarList;
     }
 
     public static MyArrayList<Book> readBookFromFile(String filePath) throws IOException {
         MyArrayList<Book> myBookList = new MyArrayList<>();
-        ShellSort<Book> shellBookSort = new ShellSort<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -78,15 +72,11 @@ public class FileReaderDataInput {
                 }
             }
         }
-
-        shellBookSort.sort(myBookList);
-
         return myBookList;
     }
 
     public static MyArrayList<Korneplod> readKorneplodFromFile(String filePath) throws IOException {
         MyArrayList<Korneplod> myKorneplodList = new MyArrayList<>();
-        ShellSort<Korneplod> shellKorneplodSort = new ShellSort<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -114,9 +104,6 @@ public class FileReaderDataInput {
                 }
             }
         }
-
-        shellKorneplodSort.sort(myKorneplodList);
-
         return myKorneplodList;
     }
 }

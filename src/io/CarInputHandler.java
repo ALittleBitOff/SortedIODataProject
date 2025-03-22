@@ -4,6 +4,8 @@ import CustomList.MyArrayList;
 import data.Car;
 import io.manualInput.CarDataInput;
 import io.textInput.FileReaderDataInput;
+import sort.ShellSort;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -49,10 +51,21 @@ public class CarInputHandler implements DataInputHandler {
         // Создание массива автомобилей
         MyArrayList<Car> cars = CarDataInput.createCarArrayFromConsole(length);
 
-        // Вывод созданных автомобилей
-        System.out.println("Список автомобилей: ");
-        for (int i = 0; i < length; i++) {
+        //Сортировка списка автомобилей
+        MyArrayList<Car> sortCars = cars.copy();
+        ShellSort<Car> shellCarsSort = new ShellSort<>();
+        shellCarsSort.sort(sortCars);
+
+        // Вывод созданных книг
+        System.out.println("Cписок автобилей:");
+        for (int i = 0; i < cars.size(); i++) {
             System.out.println(cars.get(i).toString());
+        }
+
+        // Вывод созданных автомобилей
+        System.out.println("Отсортированный список автомобилей:");
+        for (int i = 0; i < sortCars.size(); i++) {
+            System.out.println(sortCars.get(i).toString());
         }
     }
 
@@ -61,14 +74,26 @@ public class CarInputHandler implements DataInputHandler {
         System.out.print("Введите название файла *name* .txt: ");
         String filePath = "src/test/resoursec/car/"+scanner.next()+".txt";
         scanner.nextLine();
-        System.out.println(filePath);
+        System.out.println("Путь до считываемого файла "+filePath);
 
+        //Список автомобилей
         MyArrayList<Car> cars = FileReaderDataInput.readCarsFromFile(filePath);
 
+        //Сортировка списка автомобилей
+        MyArrayList<Car> sortCars = cars.copy();
+        ShellSort<Car> shellCarsSort = new ShellSort<>();
+        shellCarsSort.sort(sortCars);
+
         // Вывод созданных автомобилей
-        System.out.println("Список автомобилей:");
+        System.out.println("Cписок автомобилей:");
         for (int i = 0; i < cars.size(); i++) {
             System.out.println(cars.get(i).toString());
+        }
+
+        // Вывод созданных автомобилей
+        System.out.println("Отсортированный список автомобилей:");
+        for (int i = 0; i < sortCars.size(); i++) {
+            System.out.println(sortCars.get(i).toString());
         }
     }
 

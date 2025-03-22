@@ -3,7 +3,6 @@ package io.manualInput;
 import data.Book;
 import CustomList.MyArrayList;
 import java.util.Scanner;
-import sort.ShellSort;
 
 public class BookDataInput {
 
@@ -30,14 +29,14 @@ public class BookDataInput {
     public static MyArrayList<Book> createBookArrayFromConsole(int length) {
 
         MyArrayList<Book> myBookList = new MyArrayList<>();
-        ShellSort<Book> shellBookSort = new ShellSort<>();
+//        ShellSort<Book> shellBookSort = new ShellSort<>();
 
         for (int i = 0; i < length; i++) {
             System.out.println("Введите количество книг " + (i + 1) + ":");
              myBookList.add(createBookFromConsole());
         }
 
-        shellBookSort.sort(myBookList);
+//        shellBookSort.sort(myBookList);
 
         return myBookList;
     }
