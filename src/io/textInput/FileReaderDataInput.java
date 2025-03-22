@@ -1,29 +1,35 @@
 package io.textInput;
 
+import CustomList.MyArrayList;
 import data.Book;
 import data.Car;
 import data.Korneplod;
+import sort.ShellSort;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class FileReaderDataInput {
 
-    public static List<Car> readCarsFromFile(String filePath) throws IOException {
-        List<Car> cars = new ArrayList<>();
+    public static MyArrayList<Car> readCarsFromFile(String filePath) throws IOException {
+        MyArrayList<Car> myCarList = new MyArrayList<>();
+        ShellSort<Car> shellCarSort = new ShellSort<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
+                // Пропускаем пустые строки
+                if (line.trim().isEmpty()) {
+                    continue;
+                }
+
                 String[] parts = line.split(",");
                 if (parts.length == 3) {
                     try {
                         int power = Integer.parseInt(parts[0].trim());
                         String model = parts[1].trim();
                         int year = Integer.parseInt(parts[2].trim());
-                        cars.add(new Car.Builder()
+                        myCarList.add(new Car.Builder()
                                 .sethorsePower(power)
                                 .setmodel(model)
                                 .setreleaseYear(year)
@@ -36,21 +42,30 @@ public class FileReaderDataInput {
                 }
             }
         }
-        return cars;
+
+        shellCarSort.sort(myCarList);
+
+        return myCarList;
     }
 
-    public static List<Book> readBookFromFile(String filePath) throws IOException {
-        List<Book> books = new ArrayList<>();
+    public static MyArrayList<Book> readBookFromFile(String filePath) throws IOException {
+        MyArrayList<Book> myBookList = new MyArrayList<>();
+        ShellSort<Book> shellBookSort = new ShellSort<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
+                // Пропускаем пустые строки
+                if (line.trim().isEmpty()) {
+                    continue;
+                }
+
                 String[] parts = line.split(",");
                 if (parts.length == 3) {
                     try {
                         String author = parts[0].trim();
                         String title = parts[1].trim();
                         int pageCount = Integer.parseInt(parts[2].trim());
-                        books.add(new Book.Builder()
+                        myBookList.add(new Book.Builder()
                                 .setAuthor(author)
                                 .setTitle(title)
                                 .setPageCount(pageCount)
@@ -63,21 +78,30 @@ public class FileReaderDataInput {
                 }
             }
         }
-        return books;
+
+        shellBookSort.sort(myBookList);
+
+        return myBookList;
     }
 
-    public static List<Korneplod> readKorneplodFromFile(String filePath) throws IOException {
-        List<Korneplod> korneplods = new ArrayList<>();
+    public static MyArrayList<Korneplod> readKorneplodFromFile(String filePath) throws IOException {
+        MyArrayList<Korneplod> myKorneplodList = new MyArrayList<>();
+        ShellSort<Korneplod> shellKorneplodSort = new ShellSort<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
+                // Пропускаем пустые строки
+                if (line.trim().isEmpty()) {
+                    continue;
+                }
+
                 String[] parts = line.split(",");
                 if (parts.length == 3) {
                     try {
                         String type = parts[0].trim();
                         double weight = Double.parseDouble(parts[1].trim());
                         String color = parts[2].trim();
-                        korneplods.add(new Korneplod.Builder()
+                        myKorneplodList.add(new Korneplod.Builder()
                                 .setType(type)
                                 .setWeight(weight)
                                 .setColor(color)
@@ -90,6 +114,9 @@ public class FileReaderDataInput {
                 }
             }
         }
-        return korneplods;
+
+        shellKorneplodSort.sort(myKorneplodList);
+
+        return myKorneplodList;
     }
 }
