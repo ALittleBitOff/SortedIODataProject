@@ -1,8 +1,9 @@
 package io.manualInput;
 
 import data.Book;
-
+import CustomList.MyArrayList;
 import java.util.Scanner;
+import sort.ShellSort;
 
 public class BookDataInput {
 
@@ -25,12 +26,19 @@ public class BookDataInput {
                 .setPageCount(pages)
                 .build();
     }
-    public static Book[] createBookArrayFromConsole(int length) {
-        Book[] books = new Book[length];
+
+    public static MyArrayList<Book> createBookArrayFromConsole(int length) {
+
+        MyArrayList<Book> myBookList = new MyArrayList<>();
+        ShellSort<Book> shellBookSort = new ShellSort<>();
+
         for (int i = 0; i < length; i++) {
             System.out.println("Введите количество книг " + (i + 1) + ":");
-             books[i] = createBookFromConsole();
+             myBookList.add(createBookFromConsole());
         }
-        return books;
+
+        shellBookSort.sort(myBookList);
+
+        return myBookList;
     }
 }

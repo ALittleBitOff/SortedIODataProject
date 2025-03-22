@@ -1,11 +1,11 @@
 package io;
 
+import CustomList.MyArrayList;
 import data.Korneplod;
 import io.manualInput.KorneplodDataInput;
 import io.textInput.FileReaderDataInput;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 public class KornepodInputHandler implements DataInputHandler {
@@ -48,12 +48,12 @@ public class KornepodInputHandler implements DataInputHandler {
         scanner.nextLine(); // Очистка буфера
 
         // Создание массива корнеплодов
-        Korneplod[] korneplods = KorneplodDataInput.createKorneplodArrayFromConsole(length);
+        MyArrayList<Korneplod> korneplods = KorneplodDataInput.createKorneplodArrayFromConsole(length);
 
         // Вывод созданного списка корнеплодов
         System.out.println("Список корнеплодов:");
-        for (Korneplod korneplod : korneplods) {
-            System.out.println(korneplod);
+        for (int i = 0; i < length; i++) {
+            System.out.println(korneplods.get(i).toString());
         }
     }
 
@@ -63,12 +63,13 @@ public class KornepodInputHandler implements DataInputHandler {
         String filePath = "src/test/resoursec/korneplod/"+scanner.next()+".txt";
         scanner.nextLine();
         System.out.println(filePath);
-        List<Korneplod> korneplods = FileReaderDataInput.readKorneplodFromFile(filePath);
 
-        // Вывод созданных автомобилей
-        System.out.println("Список автомобилей:");
-        for (Korneplod korneplod  : korneplods) {
-            System.out.println(korneplod);
+        MyArrayList<Korneplod> korneplods = FileReaderDataInput.readKorneplodFromFile(filePath);
+
+        // Вывод созданных корнеплодов
+        System.out.println("Список корнеплодов:");
+        for (int i = 0; i < korneplods.size(); i++) {
+            System.out.println(korneplods.get(i).toString());
         }
     }
 }

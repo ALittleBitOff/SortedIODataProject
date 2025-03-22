@@ -19,6 +19,23 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
     @Override
+    public void insert(int index, T item) {
+        validateIndex(index); // Вы можете убрать этот вызов, если хотите добавить в конец
+        ensureCapacity();
+        System.arraycopy(elements, index, elements, index + 1, size - index);
+        elements[index] = item;
+        size++;
+    }
+
+    @Override
+    public T set(int index, T item) {
+        validateIndex(index); // Проверяем, валидный ли индекс
+        T oldValue = (T) elements[index]; // Сохраняем старое значение для возврата
+        elements[index] = item; // Заменяем элемент на новый
+        return oldValue; // Возвращаем старое значение
+    }
+
+    @Override
     public T get(int index) {
         validateIndex(index);
         return (T) elements[index];

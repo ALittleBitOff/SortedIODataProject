@@ -1,43 +1,60 @@
 package sort;
 
+import CustomList.MyArrayList;
+
 public class ShellSort<T extends Comparable<T>> implements SortStrategy<T> {
     @Override
-    public void sort(T[] array) {
-        int n = array.length;
+    public void sort(MyArrayList<T> list) {
+        int n = list.size();
         for (int gap = n / 2; gap > 0; gap /= 2) {
             for (int i = gap; i < n; i++) {
-                T temp = array[i];
+                T temp = list.get(i);
                 int j;
-                for (j = i; j >= gap && array[j - gap].compareTo(temp) > 0; j -= gap) {
-                    array[j] = array[j - gap];
+                for (j = i; j >= gap && list.get(j - gap).compareTo(temp) > 0; j -= gap) {
+                    list.set(j, list.get(j - gap));  // Перемещаем элемент
                 }
-                array[j] = temp;
+                list.set(j, temp); // Вставляем временный элемент
             }
         }
     }
 }
-/*
-Пример использования ShellSort
-package sort;
 
-public class ShellSortTest {
+/* Пример использования
+
+public class Main {
     public static void main(String[] args) {
-        Integer[] array = {5, 2, 9, 1, 5, 6};
+        // Создайте новый список
+        MyArrayList<Integer> list = new MyArrayList<>();
 
-        System.out.println("Исходный массив:");
-        printArray(array);
+        // Добавьте элементы в список
+        list.add(34);
+        list.add(7);
+        list.add(23);
+        list.add(32);
+        list.add(5);
+        list.add(62);
 
-        ShellSort.sort(array);
+        // Выводим оригинальный список
+        System.out.println("Оригинальный список: ");
+        printList(list);
 
-        System.out.println("Отсортированный массив:");
-        printArray(array);
+        // Создаем экземпляр сортировщика
+        ShellSort<Integer> shellSort = new ShellSort<>();
+
+        // Сортируем список
+        shellSort.sort(list);
+
+        // Выводим отсортированный список
+        System.out.println("Отсортированный список: ");
+        printList(list);
     }
 
-    private static void printArray(Integer[] array) {
-        for (Integer number : array) {
-            System.out.print(number + " ");
+    // Метод для вывода списка в консоль
+    private static void printList(MyArrayList<Integer> list) {
+        for (int i = 0; i < list.size(); i++) {
+            System.out.print(list.get(i) + " ");
         }
-        System.out.println();
+        System.out.println(); // Переход на новую строку
     }
 }
 */
