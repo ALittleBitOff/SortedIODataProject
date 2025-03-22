@@ -22,12 +22,15 @@ package sort;
 
 public class ShellSortTest {
     public static void main(String[] args) {
+
+        ShellSort<Integer> shellSort = new ShellSort<>(); Вот это необходимо для работы (создание экземпляра)
+
         Integer[] array = {5, 2, 9, 1, 5, 6};
 
         System.out.println("Исходный массив:");
         printArray(array);
 
-        ShellSort.sort(array);
+        shellSort.sort(array);
 
         System.out.println("Отсортированный массив:");
         printArray(array);
