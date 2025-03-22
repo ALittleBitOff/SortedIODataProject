@@ -2,7 +2,8 @@ package io;
 
 import CustomList.MyArrayList;
 import data.Korneplod;
-import io.manualInput.KorneplodDataInput;
+import io.manualInput.ManualDataInput;
+import io.randomInput.RandomDataInput;
 import io.textInput.FileReaderDataInput;
 import sort.ShellSort;
 
@@ -32,6 +33,11 @@ public class KornepodInputHandler implements DataInputHandler {
             case 2:
                 System.out.println("Ввод случайных данных");
                 // Логика для ввода случайных данных
+                try{
+                    dataRandomInputArray(scanner);
+                } catch (IOException e){
+                    System.out.println(e.getMessage());
+                }
                 break;
             case 3:
                 System.out.println("Ввод данных вручную.");
@@ -48,8 +54,13 @@ public class KornepodInputHandler implements DataInputHandler {
         int length = scanner.nextInt();
         scanner.nextLine(); // Очистка буфера
 
+        // Проверка, что length не меньше 0
+        if (length < 0) {
+            throw new IllegalArgumentException("Количество корнеплодов не может быть отрицательным: " + length);
+        }
+
         // Создание массива корнеплодов
-        MyArrayList<Korneplod> korneplods = KorneplodDataInput.createKorneplodArrayFromConsole(length);
+        MyArrayList<Korneplod> korneplods = ManualDataInput.manualKorneplodDataInput(length);
 
         //Сортировка списка корнеплодов
         MyArrayList<Korneplod> sortKorneplods = korneplods.copy();
@@ -58,15 +69,11 @@ public class KornepodInputHandler implements DataInputHandler {
 
         // Вывод созданных книг
         System.out.println("Cписок корнеплодов:");
-        for (int i = 0; i < korneplods.size(); i++) {
-            System.out.println(korneplods.get(i).toString());
-        }
+        korneplods.toPrint();
 
         // Вывод созданных корнеплодов
         System.out.println("Отсортированный список корнеплодов:");
-        for (int i = 0; i < sortKorneplods.size(); i++) {
-            System.out.println(sortKorneplods.get(i).toString());
-        }
+        sortKorneplods.toPrint();
     }
 
     @Override
@@ -86,14 +93,38 @@ public class KornepodInputHandler implements DataInputHandler {
 
         // Вывод созданных книг
         System.out.println("Cписок корнеплодов:");
-        for (int i = 0; i < korneplods.size(); i++) {
-            System.out.println(korneplods.get(i).toString());
-        }
+        korneplods.toPrint();
 
         // Вывод созданных корнеплодов
         System.out.println("Отсортированный список корнеплодов:");
-        for (int i = 0; i < sortKorneplods.size(); i++) {
-            System.out.println(sortKorneplods.get(i).toString());
+        sortKorneplods.toPrint();
+    }
+
+    @Override
+    public void dataRandomInputArray(Scanner scanner) throws IOException {
+        System.out.print("Введите количество корнеплодов: ");
+        int length = scanner.nextInt();
+        scanner.nextLine(); // Очистка буфера
+
+        // Проверка, что length не меньше 0
+        if (length < 0) {
+            throw new IllegalArgumentException("Количество корнеплодов не может быть отрицательным: " + length);
         }
+
+        //Список корнеплодов
+        MyArrayList<Korneplod> korneplods = RandomDataInput.createKornepodRandomInputArray(length);
+
+        //Сортировка списка корнеплодов
+        MyArrayList<Korneplod> sortKorneplods = korneplods.copy();
+        ShellSort<Korneplod> shellKorneplodsSort = new ShellSort<>();
+        shellKorneplodsSort.sort(sortKorneplods);
+
+        // Вывод созданных книг
+        System.out.println("Cписок корнеплодов:");
+        korneplods.toPrint();
+
+        // Вывод созданных корнеплодов
+        System.out.println("Отсортированный список корнеплодов:");
+        sortKorneplods.toPrint();
     }
 }
