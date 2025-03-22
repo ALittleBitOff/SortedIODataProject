@@ -5,7 +5,6 @@ import data.Car;
 import io.manualInput.CarDataInput;
 import io.textInput.FileReaderDataInput;
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 public class CarInputHandler implements DataInputHandler {
@@ -63,12 +62,13 @@ public class CarInputHandler implements DataInputHandler {
         String filePath = "src/test/resoursec/car/"+scanner.next()+".txt";
         scanner.nextLine();
         System.out.println(filePath);
-        List<Car> cars = FileReaderDataInput.readCarsFromFile(filePath);
+
+        MyArrayList<Car> cars = FileReaderDataInput.readCarsFromFile(filePath);
 
         // Вывод созданных автомобилей
         System.out.println("Список автомобилей:");
-        for (Car car : cars) {
-            System.out.println(car);
+        for (int i = 0; i < cars.size(); i++) {
+            System.out.println(cars.get(i).toString());
         }
     }
 

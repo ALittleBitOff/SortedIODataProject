@@ -6,7 +6,6 @@ import io.manualInput.KorneplodDataInput;
 import io.textInput.FileReaderDataInput;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 public class KornepodInputHandler implements DataInputHandler {
@@ -64,12 +63,13 @@ public class KornepodInputHandler implements DataInputHandler {
         String filePath = "src/test/resoursec/korneplod/"+scanner.next()+".txt";
         scanner.nextLine();
         System.out.println(filePath);
-        List<Korneplod> korneplods = FileReaderDataInput.readKorneplodFromFile(filePath);
+
+        MyArrayList<Korneplod> korneplods = FileReaderDataInput.readKorneplodFromFile(filePath);
 
         // Вывод созданных автомобилей
         System.out.println("Список автомобилей:");
-        for (Korneplod korneplod  : korneplods) {
-            System.out.println(korneplod);
+        for (int i = 0; i < korneplods.size(); i++) {
+            System.out.println(korneplods.get(i).toString());
         }
     }
 }
