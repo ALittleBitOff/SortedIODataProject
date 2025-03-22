@@ -1,13 +1,17 @@
 package io;
-
+import java.util.Random;
+//import io.RandomInput.CarManager;
 import data.Car;
 import io.manualInput.CarDataInput;
 import io.textInput.FileReaderDataInput;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
+import io.RandomInput.CarManager;
 
 public class CarInputHandler implements DataInputHandler {
+    private Car[] cars;
+
     @Override
     public void handleInput(Scanner scanner) {
         System.out.println("Выберите способ ввода данных для автомобиля:");
@@ -16,6 +20,10 @@ public class CarInputHandler implements DataInputHandler {
         System.out.println("3 - ввод данных вручную");
 
         int subChoice = scanner.nextInt();
+        int size = scanner.nextInt();
+
+
+
         switch (subChoice) {
             case 1:
                 System.out.println("Ввод данных для автомобиля из файла.");
@@ -27,8 +35,14 @@ public class CarInputHandler implements DataInputHandler {
                     System.out.println(e.getMessage());
                 }
                 break;
+
             case 2:
-                System.out.println("Ввод случайных данных для автомобиля.");
+                System.out.println("Введите количество автомобилей для генерации:");
+                int numCars = scanner.nextInt();
+                CarManager carManager = new CarManager();
+                carManager.fillCarsRandomly(numCars);
+
+                /*System.out.println("Вывод случайных данных для автомобиля.");
                 // Логика для ввода случайных данных
                 break;
             case 3:

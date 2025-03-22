@@ -2,6 +2,8 @@ package data;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Car implements Comparable<Car>, Serializable {
     @Serial
@@ -11,10 +13,13 @@ public class Car implements Comparable<Car>, Serializable {
     private String model;
     private int releaseYear;
 
-    private Car(Builder builder) {
+    public Car(Builder builder) {
         this.horsePower = builder.horsePower;
         this.model = builder.model;
         this.releaseYear = builder.releaseYear;
+    }
+
+    public Car(int power, String model, int year) {
     }
 
     public static class Builder {
