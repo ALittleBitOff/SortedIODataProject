@@ -1,5 +1,7 @@
 package sort;
 
+import CustomList.MyArrayList;
+
 public interface SortStrategy<T> {
-    void sort(T[] array);
+    void sort(MyArrayList<T> list);
 }

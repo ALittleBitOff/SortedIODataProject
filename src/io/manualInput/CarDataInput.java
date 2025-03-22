@@ -1,9 +1,12 @@
 package io.manualInput;
 
+import CustomList.MyArrayList;
 import data.Car;
+import sort.ShellSort;
+
 import java.util.Scanner;
 
-public class CarDataInput{
+public class CarDataInput {
 
     public static Car createCarFromConsole() {
         Scanner scanner = new Scanner(System.in);
@@ -26,12 +29,18 @@ public class CarDataInput{
                 .build();
     }
 
-    public static Car[] createCarArrayFromConsole(int length) {
-        Car[] cars = new Car[length];
+    public static MyArrayList<Car> createCarArrayFromConsole(int length) {
+
+        MyArrayList<Car> myCarList = new MyArrayList<>();
+        ShellSort<Car> shellCarSort = new ShellSort<>();
+
         for (int i = 0; i < length; i++) {
             System.out.println("Введите количество машин " + (i + 1) + ":");
-            cars[i] = createCarFromConsole();
+            myCarList.add(createCarFromConsole());
         }
-        return cars;
+
+        shellCarSort.sort(myCarList);
+
+        return myCarList;
     }
 }

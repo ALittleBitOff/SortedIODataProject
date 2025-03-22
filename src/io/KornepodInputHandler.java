@@ -1,5 +1,6 @@
 package io;
 
+import CustomList.MyArrayList;
 import data.Korneplod;
 import io.manualInput.KorneplodDataInput;
 import io.textInput.FileReaderDataInput;
@@ -48,12 +49,12 @@ public class KornepodInputHandler implements DataInputHandler {
         scanner.nextLine(); // Очистка буфера
 
         // Создание массива корнеплодов
-        Korneplod[] korneplods = KorneplodDataInput.createKorneplodArrayFromConsole(length);
+        MyArrayList<Korneplod> korneplods = KorneplodDataInput.createKorneplodArrayFromConsole(length);
 
         // Вывод созданного списка корнеплодов
         System.out.println("Список корнеплодов:");
-        for (Korneplod korneplod : korneplods) {
-            System.out.println(korneplod);
+        for (int i = 0; i < length; i++) {
+            System.out.println(korneplods.get(i).toString());
         }
     }
 

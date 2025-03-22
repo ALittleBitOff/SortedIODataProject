@@ -3,7 +3,7 @@ package io;
 import data.Book;
 import io.manualInput.BookDataInput;
 import io.textInput.FileReaderDataInput;
-
+import CustomList.MyArrayList;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
@@ -48,12 +48,12 @@ public class BookInputHandler implements DataInputHandler {
         scanner.nextLine(); // Очистка буфера
 
         // Создание массива книг
-        Book[] books = BookDataInput.createBookArrayFromConsole(length);
+        MyArrayList<Book> books = BookDataInput.createBookArrayFromConsole(length);
 
         // Вывод созданного списка книг
-        System.out.println("Created cars:");
-        for (Book book : books) {
-            System.out.println(book);
+        System.out.println("Список книг: ");
+        for (int i = 0; i < length; i++) {
+            System.out.println(books.get(i).toString());
         }
     }
 
