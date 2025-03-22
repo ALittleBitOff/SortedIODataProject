@@ -65,7 +65,7 @@ public class BookInputHandler implements DataInputHandler {
 
         MyArrayList<Book> books = FileReaderDataInput.readBookFromFile(filePath);
 
-        // Вывод созданных автомобилей
+        // Вывод созданных книг
         System.out.println("Список автомобилей:");
         for (int i = 0; i < books.size(); i++) {
             System.out.println(books.get(i).toString());
