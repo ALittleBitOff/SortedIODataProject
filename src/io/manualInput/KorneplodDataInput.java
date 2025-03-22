@@ -1,6 +1,10 @@
 package io.manualInput;
 
+import CustomList.MyArrayList;
+import data.Book;
 import data.Korneplod;
+import sort.ShellSort;
+
 import java.util.Scanner;
 
 public class KorneplodDataInput {
@@ -24,12 +28,19 @@ public class KorneplodDataInput {
                 .setColor(color)
                 .build();
     }
-    public static Korneplod[] createKorneplodArrayFromConsole(int length) {
-        Korneplod[] korneplods = new Korneplod[length];
+
+    public static MyArrayList<Korneplod> createKorneplodArrayFromConsole(int length) {
+
+        MyArrayList<Korneplod> myKorneplodList = new MyArrayList<>();
+        ShellSort<Korneplod> shellKorneplodSort = new ShellSort<>();
+
         for (int i = 0; i < length; i++) {
             System.out.println("Введите количество корнеплодов " + (i + 1) + ":");
-            korneplods[i] = createKorneplodFromConsole();
+            myKorneplodList.add(createKorneplodFromConsole());
         }
-        return korneplods;
+
+        shellKorneplodSort.sort(myKorneplodList);
+
+        return myKorneplodList;
     }
 }

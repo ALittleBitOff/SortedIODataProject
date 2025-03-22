@@ -1,5 +1,6 @@
 package io;
 
+import CustomList.MyArrayList;
 import data.Car;
 import io.manualInput.CarDataInput;
 import io.textInput.FileReaderDataInput;
@@ -47,12 +48,12 @@ public class CarInputHandler implements DataInputHandler {
         scanner.nextLine(); // Очистка буфера
 
         // Создание массива автомобилей
-        Car[] cars = CarDataInput.createCarArrayFromConsole(length);
+        MyArrayList<Car> cars = CarDataInput.createCarArrayFromConsole(length);
 
         // Вывод созданных автомобилей
-        System.out.println("Список автомобилей:");
-        for (Car car : cars) {
-            System.out.println(car);
+        System.out.println("Список автомобилей: ");
+        for (int i = 0; i < length; i++) {
+            System.out.println(cars.get(i).toString());
         }
     }
 

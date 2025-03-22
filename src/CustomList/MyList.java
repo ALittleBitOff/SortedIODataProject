@@ -5,6 +5,10 @@ public interface MyList<T> {
 
     T get(int index);
 
+    void insert(int index, T item);
+
+    T set(int index, T item);
+
     void remove(int index);
 
     int size();
