@@ -66,8 +66,8 @@ public class KornepodInputHandler implements DataInputHandler {
 
         MyArrayList<Korneplod> korneplods = FileReaderDataInput.readKorneplodFromFile(filePath);
 
-        // Вывод созданных автомобилей
-        System.out.println("Список автомобилей:");
+        // Вывод созданных корнеплодов
+        System.out.println("Список корнеплодов:");
         for (int i = 0; i < korneplods.size(); i++) {
             System.out.println(korneplods.get(i).toString());
         }
