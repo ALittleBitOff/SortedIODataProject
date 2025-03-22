@@ -1,8 +1,8 @@
-"dfsdgswre",1.3,"fsdfg"
-"dfsdgswre",8.3,"fsdfg"
+dfsdgswredsd   ,1.3,  red
+dfsdgswre ,8.3, красный
 
 
 
-"dfsd12wgswre",6.3,"fsdf125g"
+ dfsd12wgswre ,6.3,sdfg
 
 

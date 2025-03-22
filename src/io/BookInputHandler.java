@@ -4,6 +4,8 @@ import data.Book;
 import io.manualInput.BookDataInput;
 import io.textInput.FileReaderDataInput;
 import CustomList.MyArrayList;
+import sort.ShellSort;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -49,10 +51,20 @@ public class BookInputHandler implements DataInputHandler {
         // Создание массива книг
         MyArrayList<Book> books = BookDataInput.createBookArrayFromConsole(length);
 
-        // Вывод созданного списка книг
-        System.out.println("Список книг: ");
-        for (int i = 0; i < length; i++) {
+        //Сортировка списка книг
+        MyArrayList<Book> sortBooks = books.copy();
+        ShellSort<Book> shellBookSort = new ShellSort<>();
+        shellBookSort.sort(sortBooks);
+
+        // Вывод созданных книг
+        System.out.println("Cписок книг:");
+        for (int i = 0; i < books.size(); i++) {
             System.out.println(books.get(i).toString());
+        }
+        // Вывод отсортированного списка книг
+        System.out.println("Отсортированный список книг:");
+        for (int i = 0; i < sortBooks.size(); i++) {
+            System.out.println(sortBooks.get(i).toString());
         }
     }
 
@@ -61,14 +73,26 @@ public class BookInputHandler implements DataInputHandler {
         System.out.print("Введите название файла *name* .txt: ");
         String filePath = "src/test/resoursec/book/"+scanner.next()+".txt";
         scanner.nextLine();
-        System.out.println(filePath);
+        System.out.println("Путь до считываемого файла "+filePath);
 
+        //Список книг
         MyArrayList<Book> books = FileReaderDataInput.readBookFromFile(filePath);
 
+        //Сортировка списка книг
+        MyArrayList<Book> sortBooks = books.copy();
+        ShellSort<Book> shellBookSort = new ShellSort<>();
+        shellBookSort.sort(sortBooks);
+
         // Вывод созданных книг
-        System.out.println("Список автомобилей:");
+        System.out.println("Cписок книг:");
         for (int i = 0; i < books.size(); i++) {
             System.out.println(books.get(i).toString());
+        }
+
+        // Вывод отсортированного списка книг
+        System.out.println("Отсортированный список книг:");
+        for (int i = 0; i < sortBooks.size(); i++) {
+            System.out.println(sortBooks.get(i).toString());
         }
     }
 }

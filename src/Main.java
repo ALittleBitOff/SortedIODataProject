@@ -37,6 +37,14 @@ public class Main {
             } else {
                 System.out.println("Неверный выбор. Пожалуйста, выберите снова.");
             }
+
+            // Предложение выйти или продолжить
+            System.out.println("Хотите продолжить? (1 - Да, 2 - Нет)");
+            int continueChoice = scanner.nextInt();
+            if (continueChoice == 2) {
+                System.out.println("Выход из программы.");
+                break;
+            }
         } while (true);
 
         scanner.close();
