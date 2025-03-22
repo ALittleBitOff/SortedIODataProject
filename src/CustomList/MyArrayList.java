@@ -76,6 +76,15 @@ public class MyArrayList<T> implements MyList<T> {
             throw new IndexOutOfBoundsException("Индекс " + index + " выходит за пределы массива.");
         }
     }
+
+    // Метод для копирования списка
+    public MyArrayList<T> copy() {
+        MyArrayList<T> newList = new MyArrayList<>();
+        for (int i = 0; i < size; i++) {
+            newList.add((T) elements[i]);
+        }
+        return newList;
+    }
 }
 
 /*

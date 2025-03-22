@@ -4,6 +4,7 @@ import CustomList.MyArrayList;
 import data.Korneplod;
 import io.manualInput.KorneplodDataInput;
 import io.textInput.FileReaderDataInput;
+import sort.ShellSort;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -50,10 +51,21 @@ public class KornepodInputHandler implements DataInputHandler {
         // Создание массива корнеплодов
         MyArrayList<Korneplod> korneplods = KorneplodDataInput.createKorneplodArrayFromConsole(length);
 
-        // Вывод созданного списка корнеплодов
-        System.out.println("Список корнеплодов:");
-        for (int i = 0; i < length; i++) {
+        //Сортировка списка корнеплодов
+        MyArrayList<Korneplod> sortKorneplods = korneplods.copy();
+        ShellSort<Korneplod> shellKorneplodsSort = new ShellSort<>();
+        shellKorneplodsSort.sort(sortKorneplods);
+
+        // Вывод созданных книг
+        System.out.println("Cписок корнеплодов:");
+        for (int i = 0; i < korneplods.size(); i++) {
             System.out.println(korneplods.get(i).toString());
+        }
+
+        // Вывод созданных корнеплодов
+        System.out.println("Отсортированный список корнеплодов:");
+        for (int i = 0; i < sortKorneplods.size(); i++) {
+            System.out.println(sortKorneplods.get(i).toString());
         }
     }
 
@@ -62,14 +74,26 @@ public class KornepodInputHandler implements DataInputHandler {
         System.out.print("Введите название файла *name* .txt: ");
         String filePath = "src/test/resoursec/korneplod/"+scanner.next()+".txt";
         scanner.nextLine();
-        System.out.println(filePath);
+        System.out.println("Путь до считываемого файла "+filePath);
 
+        //Список корнеплодов
         MyArrayList<Korneplod> korneplods = FileReaderDataInput.readKorneplodFromFile(filePath);
 
-        // Вывод созданных корнеплодов
-        System.out.println("Список корнеплодов:");
+        //Сортировка списка корнеплодов
+        MyArrayList<Korneplod> sortKorneplods = korneplods.copy();
+        ShellSort<Korneplod> shellKorneplodsSort = new ShellSort<>();
+        shellKorneplodsSort.sort(sortKorneplods);
+
+        // Вывод созданных книг
+        System.out.println("Cписок корнеплодов:");
         for (int i = 0; i < korneplods.size(); i++) {
             System.out.println(korneplods.get(i).toString());
+        }
+
+        // Вывод созданных корнеплодов
+        System.out.println("Отсортированный список корнеплодов:");
+        for (int i = 0; i < sortKorneplods.size(); i++) {
+            System.out.println(sortKorneplods.get(i).toString());
         }
     }
 }
