@@ -3,7 +3,7 @@ package data;
 import java.io.Serial;
 import java.io.Serializable;
 
-public class Car implements Comparable<Car>, Serializable {
+public class Car implements Comparable<Car>, Serializable, Sortable {
     @Serial
     private static final long serialVersionUID = 1L;
 
@@ -87,6 +87,19 @@ public class Car implements Comparable<Car>, Serializable {
         // 3. Сравнение по году
         return Integer.compare(this.releaseYear, otherCar.releaseYear);
     }
+
+
+
+    //Доп.Задание. Реализация метода Sortable.
+    @Override
+    public String getSortingKey() {
+        return "Машина {" +
+                "Мощность: " + horsePower +
+                ", Модель: " + model +
+                ", Год выпуска: " + releaseYear +
+                "}";
+    }
+
 
     @Override
     public String toString() {

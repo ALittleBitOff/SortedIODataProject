@@ -2,13 +2,19 @@ import io.BookInputHandler;
 import io.CarInputHandler;
 import io.DataInputHandler;
 import io.KornepodInputHandler;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import io.Vyvod;
+
+import java.awt.print.Book;
+import java.io.IOException;
+import java.util.*;
+
+import static io.vyvodVfile.Vyvod.sortAndSave;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
+        List<Sortable> items = new ArrayList<>();
+        String filename = "data.txt";
         int choice;
 
         // Создаем карту для хранения обработчиков ввода
@@ -45,8 +51,62 @@ public class Main {
                 System.out.println("Выход из программы.");
                 break;
             }
-        } while (true);
+            //Запись отсортированных коллекций/найденных значений в файл в режиме добавления данных
+        } while (true) {
 
-        scanner.close();
+            System.out.println("Выберите действие: 1 - Добавить Car, 2 - Добавить Book, 3 - Добавить Korneplod, 4 - Вывести данные, 5 - Сохранить, 0 - Выход");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // очистка буфера
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Введите мощность машины: ");
+                    int power = scanner.nextInt();
+                    scanner.nextLine(); // очистка буфера
+                    System.out.print("Введите модель машины: ");
+                    String model = scanner.nextLine();
+                    System.out.print("Введите год выпуска: ");
+                    int year = scanner.nextInt();
+                    items.add(new Car(power, model, year));
+                    break;
+                case 2:
+                    System.out.print("Введите автора книги: ");
+                    String author = scanner.nextLine();
+                    System.out.print("Введите название книги: ");
+                    String title = scanner.nextLine();
+                    System.out.print("Введите количество страниц: ");
+                    int pages = scanner.nextInt();
+                    items.add(new Book(author, title, pages));
+                    break;
+                case 3:
+                    System.out.print("Введите тип корнеплода: ");
+                    String type = scanner.nextLine();
+                    System.out.print("Введите вес корнеплода: ");
+                    double weight = scanner.nextDouble();
+                    scanner.nextLine(); // очистка буфера
+                    System.out.print("Введите цвет корнеплода: ");
+                    String color = scanner.nextLine();
+                    items.add(new Korneplod(type, weight, color));
+                    break;
+                case 4:
+                    System.out.println("Список объектов:");
+                    for (Sortable item : items) {
+                        System.out.println(item);
+                    }
+                    break;
+                case 5:
+                    sortAndSave(items, filename);
+                    System.out.println("Данные сохранены в файл " + filename);
+                    break;
+                case 0:
+                    System.out.println("Выход из программы.");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Некорректный ввод, попробуйте снова.");
+
+
+            }
+        }
     }
 }

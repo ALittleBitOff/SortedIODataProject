@@ -10,7 +10,7 @@ import sort.ShellSort;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class BookInputHandler implements DataInputHandler {
+public class BookInputHandler implements DataInputHandler, Sortable {
     @Override
     public void handleInput(Scanner scanner) {
         System.out.println("Выберите способ ввода данных для книг:");

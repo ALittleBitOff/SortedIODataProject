@@ -3,7 +3,7 @@ package data;
 import java.io.Serial;
 import java.io.Serializable;
 
-public class Korneplod implements Comparable<Korneplod>, Serializable {
+public class Korneplod implements Comparable<Korneplod>, Serializable, Sortable{
     @Serial
     private static final long serialVersionUID = 1L;
 
@@ -95,6 +95,16 @@ public class Korneplod implements Comparable<Korneplod>, Serializable {
 
         // 3. Сравнение по цвету
         return this.color.compareTo(otherKorneplod.color);
+    }
+
+    //Доп.Задание. Реализация метода Sortable.
+    @Override
+    public String getSortingKey() {
+        return "Korneplod {" +
+                "type: " + type +
+                ", weight: " + weight +
+                ", color: " + color +
+                '}';
     }
 
     @Override

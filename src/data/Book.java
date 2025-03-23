@@ -3,7 +3,7 @@ package data;
 import java.io.Serial;
 import java.io.Serializable;
 
-public class Book implements Comparable<Book>, Serializable {
+public class Book implements Comparable<Book>, Serializable, Sortable {
     @Serial
     private static final long serialVersionUID = 1L;
 
@@ -91,6 +91,16 @@ public class Book implements Comparable<Book>, Serializable {
         return Integer.compare(this.pageCount, otherBook.pageCount);
     }
 
+    //Доп.Задание. Реализация метода Sortable.
+    @Override
+    public String getSortingKey() {
+        return "Book {" +
+                "author: " + author +
+                ", title: " + title +
+                ", pageCount: " + pageCount +
+                '}';
+    }
+
     @Override
     public String toString() {
         return "Book {" +
@@ -99,4 +109,5 @@ public class Book implements Comparable<Book>, Serializable {
                 ", pageCount: " + pageCount +
                 '}';
     }
+
 }
