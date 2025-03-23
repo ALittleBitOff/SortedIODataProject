@@ -66,7 +66,7 @@ public class RandomDataInput {
 
         for (int i = 0; i < length; i++) {
             String type = types[random.nextInt(types.length)];
-            double weight = 0.1 + (200) * random.nextDouble();
+            double weight = (double) Math.round(0.1 + (200) * random.nextDouble()) /100;
             String color = colors[random.nextInt(colors.length)];
             kornepods.add(new Korneplod.Builder()
                     .setType(type)

@@ -6,6 +6,8 @@ import io.manualInput.ManualDataInput;
 import io.randomInput.RandomDataInput;
 import io.textInput.FileReaderDataInput;
 import search.BinarySearch;
+import search.Key;
+import search.KeyInput;
 import sort.ShellSort;
 
 import java.io.IOException;
@@ -75,6 +77,21 @@ public class CarInputHandler implements DataInputHandler{
         // Вывод созданных автомобилей
         System.out.println("Отсортированный список автомобилей:");
         sortCars.toPrint();
+
+        //Бинарный поиск элемента
+        System.out.println("Хотите произвести бинарный поиск элемента? (1 - Да, 2 - Нет)");
+        int continueChoice = scanner.nextInt();
+        if (continueChoice == 1) {
+            BinarySearch<Car> binaryCarSearch = new BinarySearch<>();
+            Key<Car> searchKey = KeyInput.createCarKey();
+            // Вывод результата
+            int index = binaryCarSearch.binarySearch(sortCars, searchKey.getValue());
+            if (index != -1) {
+                System.out.println("Элемент " + searchKey.getValue() + " найден по индексу: " + index);
+            } else {
+                System.out.println("Элемент " + searchKey.getValue() + " не найден в массиве.");
+            }
+        }
     }
 
     @Override
@@ -99,6 +116,21 @@ public class CarInputHandler implements DataInputHandler{
         // Вывод созданных автомобилей
         System.out.println("Отсортированный список автомобилей:");
         sortCars.toPrint();
+
+        //Бинарный поиск элемента
+        System.out.println("Хотите произвести бинарный поиск элемента? (1 - Да, 2 - Нет)");
+        int continueChoice = scanner.nextInt();
+        if (continueChoice == 1) {
+            BinarySearch<Car> binaryCarSearch = new BinarySearch<>();
+            Key<Car> searchKey = KeyInput.createCarKey();
+            // Вывод результата
+            int index = binaryCarSearch.binarySearch(sortCars, searchKey.getValue());
+            if (index != -1) {
+                System.out.println("Элемент " + searchKey.getValue() + " найден по индексу: " + index);
+            } else {
+                System.out.println("Элемент " + searchKey.getValue() + " не найден в массиве.");
+            }
+        }
     }
 
     @Override
@@ -128,32 +160,19 @@ public class CarInputHandler implements DataInputHandler{
         System.out.println("Отсортированный список автомобилей:");
         sortCars.toPrint();
 
-        // Бинарный поиск
-        System.out.println("Ввод данных для поиска автомобиля:");
-        System.out.println("Введите мощность (int): ");
-        int power = scanner.nextInt();
-        scanner.nextLine(); // Очистка буфера
-
-        System.out.println("Введите модель (String): ");
-        String model = scanner.nextLine();
-
-        System.out.println("Введите год изготовления (int): ");
-        int year = scanner.nextInt();
-        scanner.nextLine(); // Очистка буфера
-       Car key =  new Car.Builder()
-                .sethorsePower(power)
-                .setmodel(model)
-                .setreleaseYear(year)
-                .build();
-        System.out.println("Key = " + key.toString());
-        BinarySearch<Car> binaryCarSearch =  new BinarySearch<>();
-        int index = binaryCarSearch.binarySearch(sortCars, key);
-        // Вывод результата
-        if (index != -1) {
-            System.out.println("Элемент " + key.toString() + " найден по индексу: " + index);
-        } else {
-            System.out.println("Элемент " + key.toString() + " не найден в массиве.");
+        //Бинарный поиск элемента
+        System.out.println("Хотите произвести бинарный поиск элемента? (1 - Да, 2 - Нет)");
+        int continueChoice = scanner.nextInt();
+        if (continueChoice == 1) {
+            BinarySearch<Car> binaryCarSearch = new BinarySearch<>();
+            Key<Car> searchKey = KeyInput.createCarKey();
+            // Вывод результата
+            int index = binaryCarSearch.binarySearch(sortCars, searchKey.getValue());
+            if (index != -1) {
+                System.out.println("Элемент " + searchKey.getValue() + " найден по индексу: " + index);
+            } else {
+                System.out.println("Элемент " + searchKey.getValue() + " не найден в массиве.");
+            }
         }
-
     }
 }
