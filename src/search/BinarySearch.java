@@ -1,16 +1,18 @@
 package search;
 
+import CustomList.MyArrayList;
+
 public class BinarySearch<T extends Comparable<T>> implements Searchable<T> {
     @Override
-    public int binarySearch(T[] array, T key) {
+    public int binarySearch(MyArrayList<T> list, T key) {
         int left = 0;
-        int right = array.length - 1;
+        int right = list.size() - 1;
 
         while (left <= right) {
             int mid = left + (right - left) / 2;
-            if (array[mid].compareTo(key) == 0) {
+            if (list.get(mid).compareTo(key) == 0) {
                 return mid;
-            } else if (array[mid].compareTo(key) < 0) {
+            } else if (list.get(mid).compareTo(key) < 0) {
                 left = mid + 1;
             } else {
                 right = mid - 1;
@@ -18,6 +20,7 @@ public class BinarySearch<T extends Comparable<T>> implements Searchable<T> {
         }
         return -1;
     }
+
 }
 /*
 Пример использования
