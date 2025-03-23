@@ -1,7 +1,8 @@
 package io;
 
 import data.Book;
-import io.manualInput.BookDataInput;
+import io.manualInput.ManualDataInput;
+import io.randomInput.RandomDataInput;
 import io.textInput.FileReaderDataInput;
 import CustomList.MyArrayList;
 import sort.ShellSort;
@@ -32,6 +33,11 @@ public class BookInputHandler implements DataInputHandler {
             case 2:
                 System.out.println("Ввод случайных данных.");
                 // Логика для ввода случайных данных
+                try{
+                    dataRandomInputArray(scanner);
+                } catch (IOException e){
+                    System.out.println(e.getMessage());
+                }
                 break;
             case 3:
                 System.out.println("Ввод данных вручную.");
@@ -48,8 +54,13 @@ public class BookInputHandler implements DataInputHandler {
         int length = scanner.nextInt();
         scanner.nextLine(); // Очистка буфера
 
+        // Проверка, что length не меньше 0
+        if (length < 0) {
+            throw new IllegalArgumentException("Количество книг не может быть отрицательным: " + length);
+        }
+
         // Создание массива книг
-        MyArrayList<Book> books = BookDataInput.createBookArrayFromConsole(length);
+        MyArrayList<Book> books = ManualDataInput.manualBookDataInput(length);
 
         //Сортировка списка книг
         MyArrayList<Book> sortBooks = books.copy();
@@ -58,14 +69,11 @@ public class BookInputHandler implements DataInputHandler {
 
         // Вывод созданных книг
         System.out.println("Cписок книг:");
-        for (int i = 0; i < books.size(); i++) {
-            System.out.println(books.get(i).toString());
-        }
+        books.toPrint();
+
         // Вывод отсортированного списка книг
         System.out.println("Отсортированный список книг:");
-        for (int i = 0; i < sortBooks.size(); i++) {
-            System.out.println(sortBooks.get(i).toString());
-        }
+        sortBooks.toPrint();
     }
 
     @Override
@@ -85,14 +93,38 @@ public class BookInputHandler implements DataInputHandler {
 
         // Вывод созданных книг
         System.out.println("Cписок книг:");
-        for (int i = 0; i < books.size(); i++) {
-            System.out.println(books.get(i).toString());
-        }
+        books.toPrint();
 
         // Вывод отсортированного списка книг
         System.out.println("Отсортированный список книг:");
-        for (int i = 0; i < sortBooks.size(); i++) {
-            System.out.println(sortBooks.get(i).toString());
+        sortBooks.toPrint();
+    }
+
+    @Override
+    public void dataRandomInputArray(Scanner scanner) throws IOException {
+        System.out.print("Введите количество книг: ");
+        int length = scanner.nextInt();
+        scanner.nextLine(); // Очистка буфера
+
+        // Проверка, что length не меньше 0
+        if (length < 0) {
+            throw new IllegalArgumentException("Количество книг не может быть отрицательным: " + length);
         }
+
+        //Список книг
+        MyArrayList<Book> books = RandomDataInput.createBookRandomInputArray(length);
+
+        //Сортировка списка книг
+        MyArrayList<Book> sortBooks = books.copy();
+        ShellSort<Book> shellBookSort = new ShellSort<>();
+        shellBookSort.sort(sortBooks);
+
+        // Вывод созданных книг
+        System.out.println("Cписок книг:");
+        books.toPrint();
+
+        // Вывод отсортированного списка книг
+        System.out.println("Отсортированный список книг:");
+        sortBooks.toPrint();
     }
 }

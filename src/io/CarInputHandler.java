@@ -2,9 +2,9 @@ package io;
 
 import CustomList.MyArrayList;
 import data.Car;
-import io.manualInput.CarDataInput;
+import io.manualInput.ManualDataInput;
+import io.randomInput.RandomDataInput;
 import io.textInput.FileReaderDataInput;
-import search.BinarySearch;
 import sort.ShellSort;
 
 import java.io.IOException;
@@ -33,6 +33,11 @@ public class CarInputHandler implements DataInputHandler {
             case 2:
                 System.out.println("Ввод случайных данных для автомобиля.");
                 // Логика для ввода случайных данных
+                try{
+                    dataRandomInputArray(scanner);
+                } catch (IOException e){
+                    System.out.println(e.getMessage());
+                }
                 break;
             case 3:
                 System.out.println("Ввод данных для автомобиля вручную.");
@@ -49,42 +54,27 @@ public class CarInputHandler implements DataInputHandler {
         int length = scanner.nextInt();
         scanner.nextLine(); // Очистка буфера
 
+        // Проверка, что length не меньше 0
+        if (length < 0) {
+            throw new IllegalArgumentException("Количество автомобилей не может быть отрицательным: " + length);
+        }
+
         // Создание массива автомобилей
-        MyArrayList<Car> cars = CarDataInput.createCarArrayFromConsole(length);
+        MyArrayList<Car> cars = ManualDataInput.manualCarDataInput(length);
 
         //Сортировка списка автомобилей
         MyArrayList<Car> sortCars = cars.copy();
         ShellSort<Car> shellCarsSort = new ShellSort<>();
         shellCarsSort.sort(sortCars);
 
-        // Вывод созданных автомобилей
+        // Вывод созданных книг
         System.out.println("Cписок автобилей:");
-        for (int i = 0; i < cars.size(); i++) {
-            System.out.println(cars.get(i).toString());
-        }
+        cars.toPrint();
 
-        // Вывод отсортированных автомобилей
+        // Вывод созданных автомобилей
         System.out.println("Отсортированный список автомобилей:");
-        for (int i = 0; i < sortCars.size(); i++) {
-            System.out.println(sortCars.get(i).toString());
-        }
-
-        // Бинарный поиск
-        System.out.println("Ввод данных для поиска автомобиля.");
-        Car key = CarDataInput.createCarFromConsole();
-        BinarySearch<Car> binaryCarSearch =  new BinarySearch<>();
-        int index = binaryCarSearch.binarySearch(sortCars, key);
-        // Вывод результата
-        if (index != -1) {
-            System.out.println("Элемент " + key.toString() + " найден по индексу: " + index);
-        } else {
-            System.out.println("Элемент " + key.toString() + " не найден в массиве.");
-        }
-
-
+        sortCars.toPrint();
     }
-
-
 
     @Override
     public void dataTextInputArray(Scanner scanner) throws IOException {
@@ -103,20 +93,38 @@ public class CarInputHandler implements DataInputHandler {
 
         // Вывод созданных автомобилей
         System.out.println("Cписок автомобилей:");
-        for (int i = 0; i < cars.size(); i++) {
-            System.out.println(cars.get(i).toString());
-        }
+        cars.toPrint();
 
-        // Вывод отсортированных автомобилей
+        // Вывод созданных автомобилей
         System.out.println("Отсортированный список автомобилей:");
-        for (int i = 0; i < sortCars.size(); i++) {
-            System.out.println(sortCars.get(i).toString());
-
-            System.out.println("Ввод данных для автомобиля вручную.");
-            handleManualInputArray(scanner);
-
-        }
+        sortCars.toPrint();
     }
 
+    @Override
+    public void dataRandomInputArray(Scanner scanner) throws IOException {
+        System.out.print("Введите количество автомобилей: ");
+        int length = scanner.nextInt();
+        scanner.nextLine(); // Очистка буфера
 
+        // Проверка, что length не меньше 0
+        if (length < 0) {
+            throw new IllegalArgumentException("Количество автомобилей не может быть отрицательным: " + length);
+        }
+
+        // Создание массива автомобилей
+        MyArrayList<Car> cars = RandomDataInput.createCarRandomInputArray(length);
+
+        //Сортировка списка автомобилей
+        MyArrayList<Car> sortCars = cars.copy();
+        ShellSort<Car> shellCarsSort = new ShellSort<>();
+        shellCarsSort.sort(sortCars);
+
+        // Вывод созданных автомобилей
+        System.out.println("Cписок автомобилей:");
+        cars.toPrint();
+
+        // Вывод созданных автомобилей
+        System.out.println("Отсортированный список автомобилей:");
+        sortCars.toPrint();
+    }
 }
