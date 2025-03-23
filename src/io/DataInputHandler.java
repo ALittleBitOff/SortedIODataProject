@@ -7,4 +7,5 @@ public interface DataInputHandler {
         void handleInput(Scanner scanner);
         void handleManualInputArray(Scanner scanner);
         void dataTextInputArray(Scanner scanner) throws IOException;
+        void dataRandomInputArray(Scanner scanner) throws IOException;
 }
