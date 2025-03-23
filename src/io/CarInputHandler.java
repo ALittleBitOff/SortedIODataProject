@@ -4,6 +4,7 @@ import CustomList.MyArrayList;
 import data.Car;
 import io.manualInput.CarDataInput;
 import io.textInput.FileReaderDataInput;
+import search.BinarySearch;
 import sort.ShellSort;
 
 import java.io.IOException;
@@ -56,18 +57,34 @@ public class CarInputHandler implements DataInputHandler {
         ShellSort<Car> shellCarsSort = new ShellSort<>();
         shellCarsSort.sort(sortCars);
 
-        // Вывод созданных книг
+        // Вывод созданных автомобилей
         System.out.println("Cписок автобилей:");
         for (int i = 0; i < cars.size(); i++) {
             System.out.println(cars.get(i).toString());
         }
 
-        // Вывод созданных автомобилей
+        // Вывод отсортированных автомобилей
         System.out.println("Отсортированный список автомобилей:");
         for (int i = 0; i < sortCars.size(); i++) {
             System.out.println(sortCars.get(i).toString());
         }
+
+        // Бинарный поиск
+        System.out.println("Ввод данных для поиска автомобиля.");
+        Car key = CarDataInput.createCarFromConsole();
+        BinarySearch<Car> binaryCarSearch =  new BinarySearch<>();
+        int index = binaryCarSearch.binarySearch(sortCars, key);
+        // Вывод результата
+        if (index != -1) {
+            System.out.println("Элемент " + key.toString() + " найден по индексу: " + index);
+        } else {
+            System.out.println("Элемент " + key.toString() + " не найден в массиве.");
+        }
+
+
     }
+
+
 
     @Override
     public void dataTextInputArray(Scanner scanner) throws IOException {
@@ -90,10 +107,14 @@ public class CarInputHandler implements DataInputHandler {
             System.out.println(cars.get(i).toString());
         }
 
-        // Вывод созданных автомобилей
+        // Вывод отсортированных автомобилей
         System.out.println("Отсортированный список автомобилей:");
         for (int i = 0; i < sortCars.size(); i++) {
             System.out.println(sortCars.get(i).toString());
+
+            System.out.println("Ввод данных для автомобиля вручную.");
+            handleManualInputArray(scanner);
+
         }
     }
 

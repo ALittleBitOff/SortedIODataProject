@@ -20,6 +20,7 @@ public class BinarySearch<T extends Comparable<T>> implements Searchable<T> {
         }
         return -1;
     }
+
 }
 /*
 Пример использования
