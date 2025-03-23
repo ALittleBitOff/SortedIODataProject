@@ -85,50 +85,12 @@ public class MyArrayList<T> implements MyList<T> {
         }
         return newList;
     }
-}
 
-/*
-Пример использования MyArrayList
-
-public class MyArrayListTest {
-    public static void main(String[] args) {
-        // Создание экземпляра MyArrayList
-        MyList<String> myList = new MyArrayList<>();
-
-        // Добавление элементов
-        myList.add("Hello");
-        myList.add("World");
-        myList.add("!");
-        System.out.println("Элементы после добавления:");
-        printList(myList); // Ожидаемый вывод: Hello World !
-
-        // Получение элемента по индексу
-        String firstElement = myList.get(0);
-        System.out.println("Первый элемент: " + firstElement); // Ожидаемый вывод: Hello
-
-        // Размер списка
-        System.out.println("Размер списка: " + myList.size()); // Ожидаемый вывод: 3
-
-        // Удаление элемента по индексу
-        myList.remove(1); // Удаляем элемент "World"
-        System.out.println("Элементы после удаления по индексу 1:");
-        printList(myList); // Ожидаемый вывод: Hello !
-
-        // Проверка, пустой ли список
-        System.out.println("Список пустой? " + myList.isEmpty()); // Ожидаемый вывод: false
-
-        // Очистка списка
-        myList.clear();
-        System.out.println("Элементы после очистки:");
-        printList(myList); // Ожидаемый вывод: (ничего, список пуст)
-        System.out.println("Список пустой? " + myList.isEmpty()); // Ожидаемый вывод: true
-    }
-
-    private static void printList(MyList<?> list) {
-        for (int i = 0; i < list.size(); i++) {
-            System.out.print(list.get(i) + " ");
+    // Метод для вывода списка
+    public void toPrint() {
+        for (int i = 0; i < size; i++) {
+            System.out.println(elements[i].toString()); // Вывод текущего элемента
         }
-        System.out.println();
+        System.out.println(); // Переход на новую строку после вывода всех элементов
     }
 }
-*/
