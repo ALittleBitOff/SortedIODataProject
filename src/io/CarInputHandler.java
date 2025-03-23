@@ -5,12 +5,13 @@ import data.Car;
 import io.manualInput.ManualDataInput;
 import io.randomInput.RandomDataInput;
 import io.textInput.FileReaderDataInput;
+import search.BinarySearch;
 import sort.ShellSort;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-public class CarInputHandler implements DataInputHandler {
+public class CarInputHandler implements DataInputHandler{
     @Override
     public void handleInput(Scanner scanner) {
         System.out.println("Выберите способ ввода данных для автомобиля:");
@@ -126,5 +127,33 @@ public class CarInputHandler implements DataInputHandler {
         // Вывод созданных автомобилей
         System.out.println("Отсортированный список автомобилей:");
         sortCars.toPrint();
+
+        // Бинарный поиск
+        System.out.println("Ввод данных для поиска автомобиля:");
+        System.out.println("Введите мощность (int): ");
+        int power = scanner.nextInt();
+        scanner.nextLine(); // Очистка буфера
+
+        System.out.println("Введите модель (String): ");
+        String model = scanner.nextLine();
+
+        System.out.println("Введите год изготовления (int): ");
+        int year = scanner.nextInt();
+        scanner.nextLine(); // Очистка буфера
+       Car key =  new Car.Builder()
+                .sethorsePower(power)
+                .setmodel(model)
+                .setreleaseYear(year)
+                .build();
+        System.out.println("Key = " + key.toString());
+        BinarySearch<Car> binaryCarSearch =  new BinarySearch<>();
+        int index = binaryCarSearch.binarySearch(sortCars, key);
+        // Вывод результата
+        if (index != -1) {
+            System.out.println("Элемент " + key.toString() + " найден по индексу: " + index);
+        } else {
+            System.out.println("Элемент " + key.toString() + " не найден в массиве.");
+        }
+
     }
 }
