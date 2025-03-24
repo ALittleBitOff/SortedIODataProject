@@ -9,10 +9,9 @@ import java.util.Scanner;
 
 public class ManualDataInput {
 
+    private static final Scanner scanner = new Scanner(System.in);
     public static MyArrayList<Car> manualCarDataInput(int length){
         MyArrayList<Car> cars = new MyArrayList<>();
-
-        Scanner scanner = new Scanner(System.in);
 
         for (int i = 0; i < length; i++) {
             System.out.println("Автомобиль номер: "+i);

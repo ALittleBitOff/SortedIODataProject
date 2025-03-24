@@ -145,7 +145,7 @@ public class KornepodInputHandler implements DataInputHandler {
         }
 
         //Список корнеплодов
-        MyArrayList<Korneplod> korneplods = RandomDataInput.createKornepodRandomInputArray(length);
+        MyArrayList<Korneplod> korneplods = RandomDataInput.createKorneplodRandomInputArray(length);
 
         //Сортировка списка корнеплодов
         MyArrayList<Korneplod> sortKorneplods = korneplods.copy();
