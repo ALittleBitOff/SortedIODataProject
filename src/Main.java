@@ -1,7 +1,7 @@
 import io.BookInputHandler;
 import io.CarInputHandler;
+import io.KorneplodInputHandler;
 import io.DataInputHandler;
-import io.KornepodInputHandler;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -15,7 +15,7 @@ public class Main {
         Map<Integer, DataInputHandler> inputHandlers = new HashMap<>();
         inputHandlers.put(1, new CarInputHandler());
         inputHandlers.put(2, new BookInputHandler());
-        inputHandlers.put(3, new KornepodInputHandler());
+        inputHandlers.put(3, new KorneplodInputHandler());
 
         do {
             System.out.println("Выберите тип ввода данных для сортировки:");

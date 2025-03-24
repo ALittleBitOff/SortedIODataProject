@@ -136,30 +136,31 @@ public interface SortStrategy<T> {
 
 ```java
 import io.BookInputHandler;
-import io.CarInputHandler;
+import io.KorneplodInputHandler;
 import io.DataInputHandler;
 import io.KornepodInputHandler;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int choice;
+   public static void main(String[] args) {
+      Scanner scanner = new Scanner(System.in);
+      int choice;
 
-        // Создаем карту для хранения обработчиков ввода
-        Map<Integer, DataInputHandler> inputHandlers = new HashMap<>();
-        inputHandlers.put(1, new CarInputHandler());
-        inputHandlers.put(2, new BookInputHandler());
-        inputHandlers.put(3, new KornepodInputHandler());
+      // Создаем карту для хранения обработчиков ввода
+      Map<Integer, DataInputHandler> inputHandlers = new HashMap<>();
+      inputHandlers.put(1, new KorneplodInputHandler());
+      inputHandlers.put(2, new BookInputHandler());
+      inputHandlers.put(3, new KornepodInputHandler());
 
-        do {....
-     
-        } while (true);
+      do {....
 
-        scanner.close();
-    }
+      } while (true);
+
+      scanner.close();
+   }
 ```
 
 ### Шаг 8: Валидация данных
