@@ -5,6 +5,9 @@ import data.Korneplod;
 import io.manualInput.ManualDataInput;
 import io.randomInput.RandomDataInput;
 import io.textInput.FileReaderDataInput;
+import search.BinarySearch;
+import search.Key;
+import search.KeyInput;
 import sort.ShellSort;
 
 import java.io.IOException;
@@ -74,6 +77,21 @@ public class KornepodInputHandler implements DataInputHandler {
         // Вывод созданных корнеплодов
         System.out.println("Отсортированный список корнеплодов:");
         sortKorneplods.toPrint();
+
+        //Бинарный поиск элемента
+        System.out.println("Хотите произвести бинарный поиск элемента? (1 - Да, 2 - Нет)");
+        int continueChoice = scanner.nextInt();
+        if (continueChoice == 1) {
+            BinarySearch<Korneplod> binaryCarSearch = new BinarySearch<>();
+            Key<Korneplod> searchKey = KeyInput.createKornepodKey();
+            // Вывод результата
+            int index = binaryCarSearch.binarySearch(sortKorneplods, searchKey.getValue());
+            if (index != -1) {
+                System.out.println("Элемент " + searchKey.getValue() + " найден по индексу: " + index);
+            } else {
+                System.out.println("Элемент " + searchKey.getValue() + " не найден в массиве.");
+            }
+        }
     }
 
     @Override
@@ -98,6 +116,21 @@ public class KornepodInputHandler implements DataInputHandler {
         // Вывод созданных корнеплодов
         System.out.println("Отсортированный список корнеплодов:");
         sortKorneplods.toPrint();
+
+        //Бинарный поиск элемента
+        System.out.println("Хотите произвести бинарный поиск элемента? (1 - Да, 2 - Нет)");
+        int continueChoice = scanner.nextInt();
+        if (continueChoice == 1) {
+            BinarySearch<Korneplod> binaryCarSearch = new BinarySearch<>();
+            Key<Korneplod> searchKey = KeyInput.createKornepodKey();
+            // Вывод результата
+            int index = binaryCarSearch.binarySearch(sortKorneplods, searchKey.getValue());
+            if (index != -1) {
+                System.out.println("Элемент " + searchKey.getValue() + " найден по индексу: " + index);
+            } else {
+                System.out.println("Элемент " + searchKey.getValue() + " не найден в массиве.");
+            }
+        }
     }
 
     @Override
@@ -126,5 +159,20 @@ public class KornepodInputHandler implements DataInputHandler {
         // Вывод созданных корнеплодов
         System.out.println("Отсортированный список корнеплодов:");
         sortKorneplods.toPrint();
+
+        //Бинарный поиск элемента
+        System.out.println("Хотите произвести бинарный поиск элемента? (1 - Да, 2 - Нет)");
+        int continueChoice = scanner.nextInt();
+        if (continueChoice == 1) {
+            BinarySearch<Korneplod> binaryCarSearch = new BinarySearch<>();
+            Key<Korneplod> searchKey = KeyInput.createKornepodKey();
+            // Вывод результата
+            int index = binaryCarSearch.binarySearch(sortKorneplods, searchKey.getValue());
+            if (index != -1) {
+                System.out.println("Элемент " + searchKey.getValue() + " найден по индексу: " + index);
+            } else {
+                System.out.println("Элемент " + searchKey.getValue() + " не найден в массиве.");
+            }
+        }
     }
 }

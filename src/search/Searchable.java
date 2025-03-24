@@ -1,5 +1,7 @@
 package search;
 
+import CustomList.MyArrayList;
+
 public interface Searchable<T> {
-    int binarySearch(T[] array, T key);
+    int binarySearch(MyArrayList<T> list, T key);
 }
