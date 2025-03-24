@@ -8,6 +8,11 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public abstract class AbstractInputHandler<T extends Comparable<T>> implements DataInputHandler {
+    protected abstract MyArrayList<T> manualInput(int length);
+    protected abstract MyArrayList<T> randomInput(int length);
+    protected abstract MyArrayList<T> fileInput(String filePath) throws IOException;
+    protected abstract Key<T> createKey();
+
     @Override
     public void handleInput(Scanner scanner) {
         System.out.println("Выберите способ ввода данных:");
@@ -95,8 +100,4 @@ public abstract class AbstractInputHandler<T extends Comparable<T>> implements D
         }
     }
 
-    protected abstract MyArrayList<T> manualInput(int length);
-    protected abstract MyArrayList<T> randomInput(int length);
-    protected abstract MyArrayList<T> fileInput(String filePath) throws IOException;
-    protected abstract Key<T> createKey();
 }
