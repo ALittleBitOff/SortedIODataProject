@@ -54,7 +54,7 @@ public class RandomDataInput {
         return books;
     }
 
-    public static MyArrayList<Korneplod> createKornepodRandomInputArray(int length) {
+    public static MyArrayList<Korneplod> createKorneplodRandomInputArray(int length) {
         MyArrayList<Korneplod> kornepods = new MyArrayList<>();
 
         //Список случайных данных
