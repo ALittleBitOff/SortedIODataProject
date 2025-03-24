@@ -1,6 +1,9 @@
 package CustomList;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
+
 
 public class MyArrayList<T> implements MyList<T> {
     private Object[] elements;
@@ -93,4 +96,33 @@ public class MyArrayList<T> implements MyList<T> {
         }
         System.out.println(); // Переход на новую строку после вывода всех элементов
     }
+
+    // Запись в файл
+
+    public void toFileWrite() throws IOException {
+        System.out.println("Запись в файл output.txt:");
+        try {
+            for (int i = 0; i < size; i++) {
+                FileWriter writer = new FileWriter("output.txt",true);
+                writer.write(elements[i].toString()+System.getProperty("line.separator") + "\n");
+                writer.close();}
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    //Запись в файл найденного элемента
+
+    public void toFileWriteSearch(int i) throws IOException {
+        System.out.println("Идет запись в файл найденного элемента:");
+        try {
+            FileWriter writer = new FileWriter("output.txt", true);
+            writer.write("Элемент найден:" + "\n" + elements[i].toString() + System.getProperty("line.separator") +  "\n");
+            writer.write("Позиция в списке: " + i + "\n");
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

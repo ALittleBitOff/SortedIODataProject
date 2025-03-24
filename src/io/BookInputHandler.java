@@ -78,6 +78,13 @@ public class BookInputHandler implements DataInputHandler {
         System.out.println("Отсортированный список книг:");
         sortBooks.toPrint();
 
+        //Запись отсортированного списка в файл
+        try {
+            sortBooks.toFileWrite();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         //Бинарный поиск элемента
         System.out.println("Хотите произвести бинарный поиск элемента? (1 - Да, 2 - Нет)");
         int continueChoice = scanner.nextInt();
@@ -88,6 +95,12 @@ public class BookInputHandler implements DataInputHandler {
             int index = binaryCarSearch.binarySearch(sortBooks, searchKey.getValue());
             if (index != -1) {
                 System.out.println("Элемент " + searchKey.getValue() + " найден по индексу: " + index);
+                //Запись найденного элемента в файл
+                try {
+                    sortBooks.toFileWriteSearch(index);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             } else {
                 System.out.println("Элемент " + searchKey.getValue() + " не найден в массиве.");
             }
@@ -117,6 +130,9 @@ public class BookInputHandler implements DataInputHandler {
         System.out.println("Отсортированный список книг:");
         sortBooks.toPrint();
 
+        //Запись отсортированного списка в файл
+        sortBooks.toFileWrite();
+
         //Бинарный поиск элемента
         System.out.println("Хотите произвести бинарный поиск элемента? (1 - Да, 2 - Нет)");
         int continueChoice = scanner.nextInt();
@@ -127,6 +143,8 @@ public class BookInputHandler implements DataInputHandler {
             int index = binaryCarSearch.binarySearch(sortBooks, searchKey.getValue());
             if (index != -1) {
                 System.out.println("Элемент " + searchKey.getValue() + " найден по индексу: " + index);
+                //Запись найденного элемента в файл
+                sortBooks.toFileWriteSearch(index);
             } else {
                 System.out.println("Элемент " + searchKey.getValue() + " не найден в массиве.");
             }
@@ -160,6 +178,9 @@ public class BookInputHandler implements DataInputHandler {
         System.out.println("Отсортированный список книг:");
         sortBooks.toPrint();
 
+        //Запись отсортированного списка в файл
+        sortBooks.toFileWrite();
+
         //Бинарный поиск элемента
         System.out.println("Хотите произвести бинарный поиск элемента? (1 - Да, 2 - Нет)");
         int continueChoice = scanner.nextInt();
@@ -170,6 +191,8 @@ public class BookInputHandler implements DataInputHandler {
             int index = binaryCarSearch.binarySearch(sortBooks, searchKey.getValue());
             if (index != -1) {
                 System.out.println("Элемент " + searchKey.getValue() + " найден по индексу: " + index);
+                //Запись найденного элемента в файл
+                sortBooks.toFileWriteSearch(index);
             } else {
                 System.out.println("Элемент " + searchKey.getValue() + " не найден в массиве.");
             }
