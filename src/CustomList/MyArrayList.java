@@ -77,6 +77,18 @@ public class MyArrayList<T> implements MyList<T> {
         }
     }
 
+    @Override
+    public String toString() {
+        StringBuilder array = new StringBuilder(getClass().getSimpleName())
+                .append(" (count=").append(size).append("):\n");
+
+        for (int i = 0; i < size; i++) {
+            array.append(i+1).append(". ").append(elements[i]).append("\n");
+        }
+
+        return array.toString();
+    }
+
     // Метод для копирования списка
     public MyArrayList<T> copy() {
         MyArrayList<T> newList = new MyArrayList<>();
