@@ -48,7 +48,7 @@ package data;
 public class Car {
     private int horsePower;
     private String model;
-    private int releaseYear
+    private int releaseYear;
 
     // Конструктор и геттеры/сеттеры
 }
@@ -137,7 +137,6 @@ public interface SortStrategy<T> {
 ```java
 import io.BookInputHandler;
 import io.KorneplodInputHandler;
-import io.DataInputHandler;
 import io.KornepodInputHandler;
 
 import java.util.HashMap;

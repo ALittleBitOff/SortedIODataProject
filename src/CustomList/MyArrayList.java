@@ -91,6 +91,5 @@ public class MyArrayList<T> implements MyList<T> {
         for (int i = 0; i < size; i++) {
             System.out.println(elements[i].toString()); // Вывод текущего элемента
         }
-        System.out.println(); // Переход на новую строку после вывода всех элементов
     }
 }
