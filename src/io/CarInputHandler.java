@@ -8,6 +8,7 @@ import io.randomInput.RandomCarInput;
 import io.randomInput.RandomDataInput;
 import io.textInput.FileCarInput;
 import io.textInput.FileReaderDataInput;
+import search.CarKeyInput;
 import search.Key;
 import search.KeyInput;
 import java.io.IOException;
@@ -33,6 +34,7 @@ public class CarInputHandler extends AbstractInputHandler<Car> {
 
     @Override
     protected Key<Car> createKey() {
-        return KeyInput.createCarKey();
+        KeyInput<Car> carKeyInput = new CarKeyInput();
+        return carKeyInput.createKey();
     }
 }

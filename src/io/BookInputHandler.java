@@ -8,6 +8,7 @@ import io.randomInput.RandomDataInput;
 import io.textInput.FileBookInput;
 import io.textInput.FileReaderDataInput;
 import CustomList.MyArrayList;
+import search.BookKeyInput;
 import search.Key;
 import search.KeyInput;
 import java.io.IOException;
@@ -33,6 +34,7 @@ public class BookInputHandler extends AbstractInputHandler<Book> {
 
     @Override
     protected Key<Book> createKey() {
-        return KeyInput.createBookKey();
+        KeyInput<Book> carKeyInput = new BookKeyInput();
+        return carKeyInput.createKey();
     }
 }

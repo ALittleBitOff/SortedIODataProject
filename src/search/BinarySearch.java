@@ -2,8 +2,7 @@ package search;
 
 import CustomList.MyArrayList;
 
-public class BinarySearch<T extends Comparable<T>> implements Searchable<T> {
-    @Override
+public class BinarySearch<T extends Comparable<T>> {
     public int binarySearch(MyArrayList<T> list, T key) {
         int left = 0;
         int right = list.size() - 1;

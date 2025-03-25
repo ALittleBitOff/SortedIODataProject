@@ -17,7 +17,7 @@ public class RandomCarInput extends RandomDataInput<Car> {
     protected Car createRandomObject() {
         int power = 50 + random.nextInt(451);
         String model = CAR_MODELS[random.nextInt(CAR_MODELS.length)];
-        int year = 1500 + random.nextInt(24); // Год от 1500 до 2023
+        int year = 2000 + random.nextInt(24); // Год от 1500 до 2023
 
         return new Car.Builder()
                 .sethorsePower(power)

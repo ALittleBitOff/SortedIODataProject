@@ -10,6 +10,8 @@ import io.textInput.FileKorneplodInput;
 import io.textInput.FileReaderDataInput;
 import search.Key;
 import search.KeyInput;
+import search.KorneplodKeyInput;
+
 import java.io.IOException;
 
 public class KorneplodInputHandler extends AbstractInputHandler<Korneplod> {
@@ -33,6 +35,7 @@ public class KorneplodInputHandler extends AbstractInputHandler<Korneplod> {
 
     @Override
     protected Key<Korneplod> createKey() {
-        return KeyInput.createKornepodKey();
+        KeyInput<Korneplod> korneplodKeyInput = new KorneplodKeyInput();
+        return korneplodKeyInput.createKey();
     }
 }
