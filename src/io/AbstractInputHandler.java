@@ -7,8 +7,12 @@ import sort.ShellSort;
 import java.io.IOException;
 import java.util.Scanner;
 
-public abstract class AbstractInputHandler<T extends Comparable<T>> implements DataInputHandler {
-    @Override
+public abstract class AbstractInputHandler<T extends Comparable<T>> {
+    protected abstract MyArrayList<T> manualInput(int length);
+    protected abstract MyArrayList<T> randomInput(int length);
+    protected abstract MyArrayList<T> fileInput(String filePath) throws IOException;
+    protected abstract Key<T> createKey();
+
     public void handleInput(Scanner scanner) {
         System.out.println("Выберите способ ввода данных:");
         System.out.println("1 - ввод из файла");
@@ -28,7 +32,6 @@ public abstract class AbstractInputHandler<T extends Comparable<T>> implements D
         }
     }
 
-    @Override
     public void handleManualInputArray(Scanner scanner) {
         System.out.print("Введите количество элементов: ");
         int length = scanner.nextInt();
@@ -42,7 +45,6 @@ public abstract class AbstractInputHandler<T extends Comparable<T>> implements D
         processAndPrint(items);
     }
 
-    @Override
     public void dataTextInputArray(Scanner scanner) throws IOException {
         System.out.print("Введите название файла: ");
         String filePath = "src/test/resources/" + scanner.next() + ".txt";
@@ -52,7 +54,6 @@ public abstract class AbstractInputHandler<T extends Comparable<T>> implements D
         processAndPrint(items);
     }
 
-    @Override
     public void dataRandomInputArray(Scanner scanner) throws IOException {
         System.out.print("Введите количество элементов: ");
         int length = scanner.nextInt();
@@ -94,9 +95,4 @@ public abstract class AbstractInputHandler<T extends Comparable<T>> implements D
             }
         }
     }
-
-    protected abstract MyArrayList<T> manualInput(int length);
-    protected abstract MyArrayList<T> randomInput(int length);
-    protected abstract MyArrayList<T> fileInput(String filePath) throws IOException;
-    protected abstract Key<T> createKey();
 }

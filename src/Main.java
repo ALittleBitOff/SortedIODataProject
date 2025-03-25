@@ -1,7 +1,8 @@
+import io.AbstractInputHandler;
 import io.BookInputHandler;
 import io.CarInputHandler;
 import io.KorneplodInputHandler;
-import io.DataInputHandler;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -12,7 +13,7 @@ public class Main {
         int choice;
 
         // Создаем карту для хранения обработчиков ввода
-        Map<Integer, DataInputHandler> inputHandlers = new HashMap<>();
+        Map<Integer, AbstractInputHandler> inputHandlers = new HashMap<>();
         inputHandlers.put(1, new CarInputHandler());
         inputHandlers.put(2, new BookInputHandler());
         inputHandlers.put(3, new KorneplodInputHandler());
@@ -31,7 +32,7 @@ public class Main {
                 break;
             }
 
-            DataInputHandler handler = inputHandlers.get(choice);
+            AbstractInputHandler handler = inputHandlers.get(choice);
             if (handler != null) {
                 handler.handleInput(scanner);
             } else {
