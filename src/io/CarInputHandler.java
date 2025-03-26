@@ -2,211 +2,73 @@ package io;
 
 import CustomList.MyArrayList;
 import data.Car;
+import io.manualInput.ManualCarInput;
 import io.manualInput.ManualDataInput;
+import io.randomInput.RandomCarInput;
 import io.randomInput.RandomDataInput;
+import io.textInput.FileCarInput;
 import io.textInput.FileReaderDataInput;
-import search.BinarySearch;
+import search.CarKeyInput;
 import search.Key;
 import search.KeyInput;
-import sort.ShellSort;
-
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.Collection;
-
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
-import java.util.function.Consumer;
 
-public class CarInputHandler implements DataInputHandler{
+/**
+ * Класс для обработки ввода данных о автомобилях, реализует абстрактный класс {@link AbstractInputHandler}.
+ * Этот класс предоставляет методы для ввода данных о машинах из различных источников:
+ * <br> - вручную,
+ * <br> - случайным образом,
+ * <br> - из файла.
+ * <br>
+ * Также он предоставляет функциональность для создания ключа поиска автомобиля.
+ */
+public class CarInputHandler extends AbstractInputHandler<Car> {
+
+    /**
+     * Реализация метода для ввода данных о автомобилях вручную.
+     *
+     * @param length Количество автомобилей для ввода.
+     * @return Список автомобилей, введенных вручную.
+     */
     @Override
-    public void handleInput(Scanner scanner) {
-        System.out.println("Выберите способ ввода данных для автомобиля:");
-        System.out.println("1 - ввод из файла");
-        System.out.println("2 - ввод случайных данных");
-        System.out.println("3 - ввод данных вручную");
-
-        int subChoice = scanner.nextInt();
-        switch (subChoice) {
-            case 1:
-                System.out.println("Ввод данных для автомобиля из файла.");
-                // Логика для ввода из файла
-                try{
-                    dataTextInputArray(scanner);
-                }
-                catch (IOException e){
-                    System.out.println(e.getMessage());
-                }
-                break;
-            case 2:
-                System.out.println("Ввод случайных данных для автомобиля.");
-                // Логика для ввода случайных данных
-                try{
-                    dataRandomInputArray(scanner);
-                } catch (IOException e){
-                    System.out.println(e.getMessage());
-                }
-                break;
-            case 3:
-                System.out.println("Ввод данных для автомобиля вручную.");
-                handleManualInputArray(scanner);
-                break;
-            default:
-                System.out.println("Неверный выбор.");
-        }
+    protected MyArrayList<Car> manualInput(int length) {
+        ManualDataInput<Car> carInput = new ManualCarInput();
+        return carInput.manualDataInputArray(length);
     }
 
+    /**
+     * Реализация метода для генерации случайных данных о автомобилях.
+     *
+     * @param length Количество случайных автомобилей для создания.
+     * @return Список случайных автомобилей.
+     */
     @Override
-    public void handleManualInputArray(Scanner scanner) {
-        System.out.print("Введите количество автомобилей: ");
-        int length = scanner.nextInt();
-        scanner.nextLine(); // Очистка буфера
-
-        // Проверка, что length не меньше 0
-        if (length < 0) {
-            throw new IllegalArgumentException("Количество автомобилей не может быть отрицательным: " + length);
-        }
-
-        // Создание массива автомобилей
-        MyArrayList<Car> cars = ManualDataInput.manualCarDataInput(length);
-
-        //Сортировка списка автомобилей
-        MyArrayList<Car> sortCars = cars.copy();
-        ShellSort<Car> shellCarsSort = new ShellSort<>();
-        shellCarsSort.sort(sortCars);
-
-        // Вывод созданных книг
-        System.out.println("Cписок автобилей:");
-        cars.toPrint();
-
-        // Вывод созданных автомобилей
-        System.out.println("Отсортированный список автомобилей:");
-        sortCars.toPrint();
-
-        //Запись отсортированного списка в файл
-        try {
-            sortCars.toFileWrite();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        //Бинарный поиск элемента
-        System.out.println("Хотите произвести бинарный поиск элемента? (1 - Да, 2 - Нет)");
-        int continueChoice = scanner.nextInt();
-        if (continueChoice == 1) {
-            BinarySearch<Car> binaryCarSearch = new BinarySearch<>();
-            Key<Car> searchKey = KeyInput.createCarKey();
-            // Вывод результата
-            int index = binaryCarSearch.binarySearch(sortCars, searchKey.getValue());
-            if (index != -1) {
-                System.out.println("Элемент " + searchKey.getValue() + " найден по индексу: " + index);
-                //Запись найденного элемента в файл
-                try {
-                    sortCars.toFileWriteSearch(index);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            } else {
-                System.out.println("Элемент " + searchKey.getValue() + " не найден в массиве.");
-            }
-        }
+    protected MyArrayList<Car> randomInput(int length) {
+        RandomDataInput<Car> carInput = new RandomCarInput();
+        return carInput.createRandomInputArray(length);
     }
 
+    /**
+     * Реализация метода для чтения данных о автомобилях из файла.
+     *
+     * @param filePath Путь к файлу, из которого нужно считать данные.
+     * @return Список автомобилей, считанных из файла.
+     * @throws IOException Если произошла ошибка при чтении файла.
+     */
     @Override
-    public void dataTextInputArray(Scanner scanner) throws IOException {
-        System.out.print("Введите название файла *name* .txt: ");
-        String filePath = "src/test/resoursec/car/"+scanner.next()+".txt";
-        scanner.nextLine();
-        System.out.println("Путь до считываемого файла "+filePath);
-
-        //Список автомобилей
-        MyArrayList<Car> cars = FileReaderDataInput.readCarsFromFile(filePath);
-
-        //Сортировка списка автомобилей
-        MyArrayList<Car> sortCars = cars.copy();
-        ShellSort<Car> shellCarsSort = new ShellSort<>();
-        shellCarsSort.sort(sortCars);
-
-        // Вывод созданных автомобилей
-        System.out.println("Cписок автомобилей:");
-        cars.toPrint();
-
-        // Вывод созданных автомобилей
-        System.out.println("Отсортированный список автомобилей:");
-        sortCars.toPrint();
-
-        //Запись отсортированного списка в файл
-        sortCars.toFileWrite();
-
-        //Бинарный поиск элемента
-        System.out.println("Хотите произвести бинарный поиск элемента? (1 - Да, 2 - Нет)");
-        int continueChoice = scanner.nextInt();
-        if (continueChoice == 1) {
-            BinarySearch<Car> binaryCarSearch = new BinarySearch<>();
-            Key<Car> searchKey = KeyInput.createCarKey();
-            // Вывод результата
-            int index = binaryCarSearch.binarySearch(sortCars, searchKey.getValue());
-            if (index != -1) {
-                System.out.println("Элемент " + searchKey.getValue() + " найден по индексу: " + index);
-                //Запись найденного элемента в файл
-                sortCars.toFileWriteSearch(index);
-            } else {
-                System.out.println("Элемент " + searchKey.getValue() + " не найден в массиве.");
-            }
-        }
+    protected MyArrayList<Car> fileInput(String filePath) throws IOException {
+        FileReaderDataInput<Car> carInput = new FileCarInput();
+        return carInput.readFromFile(filePath);
     }
 
+    /**
+     * Реализация метода для создания ключа поиска для автомобилей.
+     *
+     * @return Ключ для поиска автомобиля.
+     */
     @Override
-    public void dataRandomInputArray(Scanner scanner) throws IOException {
-        System.out.print("Введите количество автомобилей: ");
-        int length = scanner.nextInt();
-        scanner.nextLine(); // Очистка буфера
-
-        // Проверка, что length не меньше 0
-        if (length < 0) {
-            throw new IllegalArgumentException("Количество автомобилей не может быть отрицательным: " + length);
-        }
-
-        // Создание массива автомобилей
-        MyArrayList<Car> cars = RandomDataInput.createCarRandomInputArray(length);
-
-        //Сортировка списка автомобилей
-        MyArrayList<Car> sortCars = cars.copy();
-        ShellSort<Car> shellCarsSort = new ShellSort<>();
-        shellCarsSort.sort(sortCars);
-
-        // Вывод созданных автомобилей
-        System.out.println("Cписок автомобилей:");
-        cars.toPrint();
-
-        // Вывод созданных автомобилей
-        System.out.println("Отсортированный список автомобилей:");
-        sortCars.toPrint();
-
-        //Запись отсортированного списка в файл
-        sortCars.toFileWrite();
-
-        //Бинарный поиск элемента
-        System.out.println("Хотите произвести бинарный поиск элемента? (1 - Да, 2 - Нет)");
-        int continueChoice = scanner.nextInt();
-        if (continueChoice == 1) {
-            BinarySearch<Car> binaryCarSearch = new BinarySearch<>();
-            Key<Car> searchKey = KeyInput.createCarKey();
-            // Вывод результата
-            int index = binaryCarSearch.binarySearch(sortCars, searchKey.getValue());
-            if (index != -1) {
-                System.out.println("Элемент " + searchKey.getValue() + " найден по индексу: " + index);
-                //Запись найденного элемента в файл
-                sortCars.toFileWriteSearch(index);
-            } else {
-                System.out.println("Элемент " + searchKey.getValue() + " не найден в массиве.");
-            }
-
-        }
-
+    protected Key<Car> createKey() {
+        KeyInput<Car> carKeyInput = new CarKeyInput();
+        return carKeyInput.createKey();
     }
-
 }

@@ -1,63 +1,59 @@
 package search;
 
-import data.Book;
-import data.Car;
-import data.Korneplod;
-
 import java.util.Scanner;
 
-public class KeyInput {
-    public static Key<Car> createCarKey(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите мощность (int): ");
-        int power = scanner.nextInt();
-        scanner.nextLine(); // Очистка буфера
+/**
+ * Абстрактный класс для ввода данных, необходимых для создания ключа поиска.
+ * <br>
+ * Классы, наследующие этот класс, должны реализовать метод {@link #createKey()},
+ * который будет создавать ключ, используя введенные данные.
+ *
+ * @param <T> Тип, который будет использоваться в качестве значения ключа.
+ */
+public abstract class KeyInput<T> {
+    protected Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Введите модель (String): ");
-        String model = scanner.nextLine();
+    /**
+     * Абстрактный метод для создания ключа с использованием данных, введенных пользователем.
+     *
+     * @return Созданный ключ типа {@link Key}.
+     */
+    public abstract Key<T> createKey();
 
-        System.out.println("Введите год изготовления (int): ");
-        int year = scanner.nextInt();
-        scanner.nextLine(); // Очистка буфера
-        return new Key<>(new Car.Builder()
-                .sethorsePower(power)
-                .setmodel(model)
-                .setreleaseYear(year)
-                .build());
+    /**
+     * Метод для получения строкового ввода от пользователя.
+     *
+     * @param prompt Текст, который будет отображаться перед вводом.
+     * @return Введенная строка.
+     */
+    protected String getStringInput(String prompt) {
+        System.out.print(prompt);
+        return scanner.nextLine();
     }
 
-    public static Key<Book> createBookKey(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите автора книги (String): ");
-        String author = scanner.nextLine();
-
-        System.out.print("Введите название книги (String): ");
-        String title = scanner.nextLine();
-
-        System.out.print("Введите количество страниц (int): ");
-        int pages = scanner.nextInt();
+    /**
+     * Метод для получения целочисленного ввода от пользователя.
+     *
+     * @param prompt Текст, который будет отображаться перед вводом.
+     * @return Введенное целое число.
+     */
+    protected int getIntInput(String prompt) {
+        System.out.print(prompt);
+        int value = scanner.nextInt();
         scanner.nextLine(); // Очистка буфера
-        return new Key<>(new Book.Builder()
-                .setAuthor(author)
-                .setTitle(title)
-                .setPageCount(pages)
-                .build());
+        return value;
     }
-    public static Key<Korneplod> createKornepodKey(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите тип (String): ");
-        String type = scanner.nextLine();
 
-        System.out.print("Введите массу (double): ");
-        double weight = scanner.nextDouble();
+    /**
+     * Метод для получения ввода типа double от пользователя.
+     *
+     * @param prompt Текст, который будет отображаться перед вводом.
+     * @return Введенное значение типа double.
+     */
+    protected double getDoubleInput(String prompt) {
+        System.out.print(prompt);
+        double value = scanner.nextDouble();
         scanner.nextLine(); // Очистка буфера
-
-        System.out.print("Введите цвет (String): ");
-        String color = scanner.nextLine();
-        return new Key<>(new Korneplod.Builder()
-                .setType(type)
-                .setWeight(weight)
-                .setColor(color)
-                .build());
+        return value;
     }
 }

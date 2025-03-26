@@ -1,79 +1,48 @@
 package io.randomInput;
 
 import CustomList.MyArrayList;
-import data.Car;
-import data.Book;
-import data.Korneplod;
 import java.util.Random;
 
+/**
+ * Абстрактный класс для генерации случайных объектов.
+ * <br>
+ * Класс используется для создания случайных объектов типа {@link T},
+ * с использованием метода {@link Random#nextInt(int)}.
+ * <br>
+ * Конкретные реализации для различных типов объектов должны наследовать
+ * этот класс и реализовывать метод {@link RandomDataInput#createRandomObject()}.
+ *
+ * @param <T> Тип объектов, которые будут генерироваться случайным образом.
+ */
+public abstract class RandomDataInput<T> {
 
-public class RandomDataInput {
+    /** Экземпляр класса Random для генерации случайных чисел. */
+    protected static final Random random = new Random();
 
-    public static MyArrayList<Car> createCarRandomInputArray(int length){
-        MyArrayList<Car> cars = new MyArrayList<>();
+    /**
+     * Метод для создания случайного объекта типа {@link T}.
+     * <br>
+     * Этот метод должен быть реализован в наследниках для создания объектов
+     * конкретных типов.
+     *
+     * @return Случайно сгенерированный объект типа {@link T}.
+     */
+    protected abstract T createRandomObject();
 
-        //Список рандомных названий автомобилей
-        String[] carModels = {"Toyota Camry", "Honda Accord", "Ford Mustang", "BMW X5", "Audi A4", "Tesla Model S"};
-
-        // Создаем объект Random для генерации случайных чисел
-        Random random = new Random();
-
+    /**
+     * Метод для создания списка случайных объектов заданной длины.
+     * <br>
+     * Метод создает список объектов типа {@link T}, заполняя его с помощью
+     * метода {@link RandomDataInput#createRandomObject()}.
+     *
+     * @param length Длина списка.
+     * @return Список {@link MyArrayList}, содержащий случайно сгенерированные объекты.
+     */
+    public MyArrayList<T> createRandomInputArray(int length) {
+        MyArrayList<T> items = new MyArrayList<>();
         for (int i = 0; i < length; i++) {
-            int power = 50 + random.nextInt(451);
-            String model = carModels[random.nextInt(carModels.length)];
-            int year = 2000 + random.nextInt(24); // Год от 2000 до 2023;
-            cars.add(new Car.Builder()
-                    .sethorsePower(power)
-                    .setmodel(model)
-                    .setreleaseYear(year)
-                    .build());
+            items.add(createRandomObject());
         }
-        return cars;
-    }
-
-    public static MyArrayList<Book> createBookRandomInputArray(int length){
-        MyArrayList<Book> books = new MyArrayList<>();
-
-        //Список случайных названий автомобилей
-        String[] authors = {"George Orwell", "J.K. Rowling", "J.R.R. Tolkien", "Leo Tolstoy"};
-        String[] titles = {"1984", "Harry Potter", "The Lord of the Rings", "War and Peace"};
-
-        // Создаем объект Random для генерации случайных чисел
-        Random random = new Random();
-
-        for (int i = 0; i < length; i++) {
-            String author = authors[random.nextInt(authors.length)];
-            String title = titles[random.nextInt(titles.length)];
-            int pageCount = random.nextInt(2000);
-            books.add(new Book.Builder()
-                    .setAuthor(author)
-                    .setTitle(title)
-                    .setPageCount(pageCount)
-                    .build());
-        }
-        return books;
-    }
-
-    public static MyArrayList<Korneplod> createKornepodRandomInputArray(int length) {
-        MyArrayList<Korneplod> kornepods = new MyArrayList<>();
-
-        //Список случайных данных
-        String[] types = {"Carrot", "Potato", "Beetroot", "Radish"};
-        String[] colors = {"Orange", "Brown", "Purple", "Red"};
-
-        // Создаем объект Random для генерации случайных чисел
-        Random random = new Random();
-
-        for (int i = 0; i < length; i++) {
-            String type = types[random.nextInt(types.length)];
-            double weight = (double) Math.round(0.1 + (200) * random.nextDouble()) /100;
-            String color = colors[random.nextInt(colors.length)];
-            kornepods.add(new Korneplod.Builder()
-                    .setType(type)
-                    .setWeight(weight)
-                    .setColor(color)
-                    .build());
-        }
-        return kornepods;
+        return items;
     }
 }
