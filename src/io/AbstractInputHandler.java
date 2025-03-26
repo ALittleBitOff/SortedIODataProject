@@ -4,6 +4,7 @@ import CustomList.MyArrayList;
 import search.BinarySearch;
 import search.Key;
 import sort.ShellSort;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -156,8 +157,9 @@ public abstract class AbstractInputHandler<T extends Comparable<T>> {
 
         performBinarySearch(sortedItems);
 
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(OUTPUT_INPUT_PATH + "output.txt", false));
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(OUTPUT_INPUT_PATH + "output.txt", true));
              PrintWriter writer = new PrintWriter(bufferedWriter)) {
+            writer.println("\n" + this.getClass().getSimpleName().replace("InputHandler", "") + " :");
             writer.println("======== Исходный список ========");
             writer.write(items.toString());
             writer.println("======== Отсортированный список ========");
