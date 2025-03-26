@@ -1,0 +1,44 @@
+======== Исходный список ========
+MyArrayList (count=20):
+1. Book {author: George Orwell, title: 1984, pageCount: 491}
+2. Book {author: J.R.R. Tolkien, title: War and Peace, pageCount: 1176}
+3. Book {author: J.R.R. Tolkien, title: 1984, pageCount: 452}
+4. Book {author: J.R.R. Tolkien, title: 1984, pageCount: 806}
+5. Book {author: J.R.R. Tolkien, title: Harry Potter, pageCount: 968}
+6. Book {author: J.K. Rowling, title: War and Peace, pageCount: 464}
+7. Book {author: Leo Tolstoy, title: Harry Potter, pageCount: 426}
+8. Book {author: Leo Tolstoy, title: War and Peace, pageCount: 498}
+9. Book {author: George Orwell, title: 1984, pageCount: 812}
+10. Book {author: George Orwell, title: Harry Potter, pageCount: 897}
+11. Book {author: J.R.R. Tolkien, title: War and Peace, pageCount: 973}
+12. Book {author: J.R.R. Tolkien, title: Harry Potter, pageCount: 1500}
+13. Book {author: Leo Tolstoy, title: Harry Potter, pageCount: 677}
+14. Book {author: George Orwell, title: War and Peace, pageCount: 541}
+15. Book {author: Leo Tolstoy, title: War and Peace, pageCount: 510}
+16. Book {author: J.R.R. Tolkien, title: Harry Potter, pageCount: 1361}
+17. Book {author: George Orwell, title: The Lord of the Rings, pageCount: 824}
+18. Book {author: J.K. Rowling, title: The Lord of the Rings, pageCount: 241}
+19. Book {author: Leo Tolstoy, title: The Lord of the Rings, pageCount: 561}
+20. Book {author: Leo Tolstoy, title: War and Peace, pageCount: 265}
+======== Отсортированный список ========
+MyArrayList (count=20):
+1. Book {author: George Orwell, title: 1984, pageCount: 491}
+2. Book {author: George Orwell, title: 1984, pageCount: 812}
+3. Book {author: George Orwell, title: Harry Potter, pageCount: 897}
+4. Book {author: George Orwell, title: The Lord of the Rings, pageCount: 824}
+5. Book {author: George Orwell, title: War and Peace, pageCount: 541}
+6. Book {author: J.K. Rowling, title: The Lord of the Rings, pageCount: 241}
+7. Book {author: J.K. Rowling, title: War and Peace, pageCount: 464}
+8. Book {author: J.R.R. Tolkien, title: 1984, pageCount: 452}
+9. Book {author: J.R.R. Tolkien, title: 1984, pageCount: 806}
+10. Book {author: J.R.R. Tolkien, title: Harry Potter, pageCount: 968}
+11. Book {author: J.R.R. Tolkien, title: Harry Potter, pageCount: 1361}
+12. Book {author: J.R.R. Tolkien, title: Harry Potter, pageCount: 1500}
+13. Book {author: J.R.R. Tolkien, title: War and Peace, pageCount: 973}
+14. Book {author: J.R.R. Tolkien, title: War and Peace, pageCount: 1176}
+15. Book {author: Leo Tolstoy, title: Harry Potter, pageCount: 426}
+16. Book {author: Leo Tolstoy, title: Harry Potter, pageCount: 677}
+17. Book {author: Leo Tolstoy, title: The Lord of the Rings, pageCount: 561}
+18. Book {author: Leo Tolstoy, title: War and Peace, pageCount: 265}
+19. Book {author: Leo Tolstoy, title: War and Peace, pageCount: 498}
+20. Book {author: Leo Tolstoy, title: War and Peace, pageCount: 510}
