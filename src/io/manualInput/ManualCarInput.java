@@ -2,8 +2,21 @@ package io.manualInput;
 
 import data.Car;
 
+/**
+ * Класс для ручного ввода данных о автомобиле.
+ * <br>
+ * Наследует абстрактный класс {@link ManualDataInput}, предоставляя реализацию метода
+ * {@link ManualDataInput#createObject()} для создания объекта типа {@link Car}.
+ */
 public class ManualCarInput extends ManualDataInput<Car> {
 
+    /**
+     * Метод для создания объекта типа {@link Car} на основе ввода данных пользователем.
+     * <br>
+     * Вводятся данные о автомобиле: мощность, модель и год изготовления.
+     *
+     * @return Созданный объект {@link Car}, собранный с помощью {@link Car.Builder}.
+     */
     @Override
     protected Car createObject() {
         System.out.println("Введите мощность (int): ");
@@ -18,9 +31,9 @@ public class ManualCarInput extends ManualDataInput<Car> {
         scanner.nextLine(); // Очистка буфера
 
         return new Car.Builder()
-                .sethorsePower(power)
-                .setmodel(model)
-                .setreleaseYear(year)
+                .setHorsePower(power)
+                .setModel(model)
+                .setReleaseYear(year)
                 .build();
     }
 }

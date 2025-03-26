@@ -2,8 +2,21 @@ package io.manualInput;
 
 import data.Korneplod;
 
+/**
+ * Класс для ручного ввода данных о корнеплодах.
+ * <br>
+ * Наследует абстрактный класс {@link ManualDataInput}, предоставляя реализацию метода
+ * {@link ManualDataInput#createObject()} для создания объекта типа {@link Korneplod}.
+ */
 public class ManualKorneplodInput extends ManualDataInput<Korneplod> {
 
+    /**
+     * Метод для создания объекта типа {@link Korneplod} на основе ввода данных пользователем.
+     * <br>
+     * Вводятся данные о корнеплоде: тип, масса и цвет.
+     *
+     * @return Созданный объект {@link Korneplod}, собранный с помощью {@link Korneplod.Builder}.
+     */
     @Override
     protected Korneplod createObject() {
         System.out.println("Введите тип корнеплода (String): ");
