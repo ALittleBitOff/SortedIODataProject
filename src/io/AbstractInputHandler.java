@@ -156,7 +156,7 @@ public abstract class AbstractInputHandler<T extends Comparable<T>> {
 
         performBinarySearch(sortedItems);
 
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(OUTPUT_INPUT_PATH + "output.txt", false));
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(OUTPUT_INPUT_PATH + "output.txt", true));
              PrintWriter writer = new PrintWriter(bufferedWriter)) {
             writer.println("======== Исходный список ========");
             writer.write(items.toString());
@@ -181,7 +181,7 @@ public abstract class AbstractInputHandler<T extends Comparable<T>> {
             Key<T> searchKey = createKey();
             int index = binarySearch.binarySearch(sortedItems, searchKey.getValue());
 
-            try (PrintWriter writer = new PrintWriter(new FileWriter(OUTPUT_INPUT_PATH + "search_key.txt", false))) {
+            try (PrintWriter writer = new PrintWriter(new FileWriter(OUTPUT_INPUT_PATH + "search_key.txt", true))) {
                 String result = (index != -1)
                         ? "Элемент " + searchKey.getValue() + " найден по индексу: " + index
                         : "Элемент " + searchKey.getValue() + " не найден.";
