@@ -1,44 +1,38 @@
+
+Book :
 ======== Исходный список ========
-MyArrayList (count=20):
-1. Book {author: George Orwell, title: 1984, pageCount: 491}
-2. Book {author: J.R.R. Tolkien, title: War and Peace, pageCount: 1176}
-3. Book {author: J.R.R. Tolkien, title: 1984, pageCount: 452}
-4. Book {author: J.R.R. Tolkien, title: 1984, pageCount: 806}
-5. Book {author: J.R.R. Tolkien, title: Harry Potter, pageCount: 968}
-6. Book {author: J.K. Rowling, title: War and Peace, pageCount: 464}
-7. Book {author: Leo Tolstoy, title: Harry Potter, pageCount: 426}
-8. Book {author: Leo Tolstoy, title: War and Peace, pageCount: 498}
-9. Book {author: George Orwell, title: 1984, pageCount: 812}
-10. Book {author: George Orwell, title: Harry Potter, pageCount: 897}
-11. Book {author: J.R.R. Tolkien, title: War and Peace, pageCount: 973}
-12. Book {author: J.R.R. Tolkien, title: Harry Potter, pageCount: 1500}
-13. Book {author: Leo Tolstoy, title: Harry Potter, pageCount: 677}
-14. Book {author: George Orwell, title: War and Peace, pageCount: 541}
-15. Book {author: Leo Tolstoy, title: War and Peace, pageCount: 510}
-16. Book {author: J.R.R. Tolkien, title: Harry Potter, pageCount: 1361}
-17. Book {author: George Orwell, title: The Lord of the Rings, pageCount: 824}
-18. Book {author: J.K. Rowling, title: The Lord of the Rings, pageCount: 241}
-19. Book {author: Leo Tolstoy, title: The Lord of the Rings, pageCount: 561}
-20. Book {author: Leo Tolstoy, title: War and Peace, pageCount: 265}
+MyArrayList (count=10):
+1. Книга { Автор: Leo Tolstoy, Название: War and Peace, Количество страниц: 1379 }
+2. Книга { Автор: J.R.R. Tolkien, Название: 1984, Количество страниц: 1088 }
+3. Книга { Автор: Leo Tolstoy, Название: War and Peace, Количество страниц: 1536 }
+4. Книга { Автор: Leo Tolstoy, Название: The Lord of the Rings, Количество страниц: 1519 }
+5. Книга { Автор: Leo Tolstoy, Название: The Lord of the Rings, Количество страниц: 1189 }
+6. Книга { Автор: Leo Tolstoy, Название: The Lord of the Rings, Количество страниц: 736 }
+7. Книга { Автор: J.K. Rowling, Название: Harry Potter, Количество страниц: 1891 }
+8. Книга { Автор: J.R.R. Tolkien, Название: The Lord of the Rings, Количество страниц: 1297 }
+9. Книга { Автор: George Orwell, Название: War and Peace, Количество страниц: 1980 }
+10. Книга { Автор: J.K. Rowling, Название: Harry Potter, Количество страниц: 894 }
+======== Сортировка только элементов с четными значениями числового поля ========
+MyArrayList (count=10):
+1. Книга { Автор: Leo Tolstoy, Название: War and Peace, Количество страниц: 1379 }
+2. Книга { Автор: J.R.R. Tolkien, Название: 1984, Количество страниц: 1088 }
+3. Книга { Автор: Leo Tolstoy, Название: War and Peace, Количество страниц: 1536 }
+4. Книга { Автор: Leo Tolstoy, Название: The Lord of the Rings, Количество страниц: 1519 }
+5. Книга { Автор: Leo Tolstoy, Название: The Lord of the Rings, Количество страниц: 1189 }
+6. Книга { Автор: Leo Tolstoy, Название: The Lord of the Rings, Количество страниц: 736 }
+7. Книга { Автор: J.K. Rowling, Название: Harry Potter, Количество страниц: 1891 }
+8. Книга { Автор: J.R.R. Tolkien, Название: The Lord of the Rings, Количество страниц: 1297 }
+9. Книга { Автор: George Orwell, Название: War and Peace, Количество страниц: 1980 }
+10. Книга { Автор: J.K. Rowling, Название: Harry Potter, Количество страниц: 894 }
 ======== Отсортированный список ========
-MyArrayList (count=20):
-1. Book {author: George Orwell, title: 1984, pageCount: 491}
-2. Book {author: George Orwell, title: 1984, pageCount: 812}
-3. Book {author: George Orwell, title: Harry Potter, pageCount: 897}
-4. Book {author: George Orwell, title: The Lord of the Rings, pageCount: 824}
-5. Book {author: George Orwell, title: War and Peace, pageCount: 541}
-6. Book {author: J.K. Rowling, title: The Lord of the Rings, pageCount: 241}
-7. Book {author: J.K. Rowling, title: War and Peace, pageCount: 464}
-8. Book {author: J.R.R. Tolkien, title: 1984, pageCount: 452}
-9. Book {author: J.R.R. Tolkien, title: 1984, pageCount: 806}
-10. Book {author: J.R.R. Tolkien, title: Harry Potter, pageCount: 968}
-11. Book {author: J.R.R. Tolkien, title: Harry Potter, pageCount: 1361}
-12. Book {author: J.R.R. Tolkien, title: Harry Potter, pageCount: 1500}
-13. Book {author: J.R.R. Tolkien, title: War and Peace, pageCount: 973}
-14. Book {author: J.R.R. Tolkien, title: War and Peace, pageCount: 1176}
-15. Book {author: Leo Tolstoy, title: Harry Potter, pageCount: 426}
-16. Book {author: Leo Tolstoy, title: Harry Potter, pageCount: 677}
-17. Book {author: Leo Tolstoy, title: The Lord of the Rings, pageCount: 561}
-18. Book {author: Leo Tolstoy, title: War and Peace, pageCount: 265}
-19. Book {author: Leo Tolstoy, title: War and Peace, pageCount: 498}
-20. Book {author: Leo Tolstoy, title: War and Peace, pageCount: 510}
+MyArrayList (count=10):
+1. Книга { Автор: George Orwell, Название: War and Peace, Количество страниц: 1980 }
+2. Книга { Автор: J.K. Rowling, Название: Harry Potter, Количество страниц: 894 }
+3. Книга { Автор: J.K. Rowling, Название: Harry Potter, Количество страниц: 1891 }
+4. Книга { Автор: J.R.R. Tolkien, Название: 1984, Количество страниц: 1088 }
+5. Книга { Автор: J.R.R. Tolkien, Название: The Lord of the Rings, Количество страниц: 1297 }
+6. Книга { Автор: Leo Tolstoy, Название: The Lord of the Rings, Количество страниц: 736 }
+7. Книга { Автор: Leo Tolstoy, Название: The Lord of the Rings, Количество страниц: 1189 }
+8. Книга { Автор: Leo Tolstoy, Название: The Lord of the Rings, Количество страниц: 1519 }
+9. Книга { Автор: Leo Tolstoy, Название: War and Peace, Количество страниц: 1379 }
+10. Книга { Автор: Leo Tolstoy, Название: War and Peace, Количество страниц: 1536 }

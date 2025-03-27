@@ -4,6 +4,8 @@ import CustomList.MyArrayList;
 import search.BinarySearch;
 import search.Key;
 import sort.ShellSort;
+import sort.ModifiedShellSort;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -146,11 +148,18 @@ public abstract class AbstractInputHandler<T extends Comparable<T>> {
      */
     private void processAndPrint(MyArrayList<T> items) {
         MyArrayList<T> sortedItems = items.copy();
+        MyArrayList<T> modifiedSortedItems = items.copy();
         ShellSort<T> shellSort = new ShellSort<>();
-        shellSort.sort(sortedItems);
+        ModifiedShellSort<T> modifiedShellSort = new ModifiedShellSort<>();
 
         System.out.println("======== Исходный список ========");
         items.toPrint();
+
+        modifiedShellSort.sort(modifiedSortedItems);
+        System.out.println("======== Сортировка только элементов с четными значениями числового поля ========");
+        modifiedSortedItems.toPrint();
+
+        shellSort.sort(sortedItems);
         System.out.println("======== Отсортированный список ========");
         sortedItems.toPrint();
 
@@ -158,8 +167,11 @@ public abstract class AbstractInputHandler<T extends Comparable<T>> {
 
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(OUTPUT_INPUT_PATH + "output.txt", true));
              PrintWriter writer = new PrintWriter(bufferedWriter)) {
+            writer.println("\n" + this.getClass().getSimpleName().replace("InputHandler", "") + " :");
             writer.println("======== Исходный список ========");
             writer.write(items.toString());
+            writer.println("======== Сортировка только элементов с четными значениями числового поля ========");
+            writer.write(modifiedSortedItems.toString());
             writer.println("======== Отсортированный список ========");
             writer.write(sortedItems.toString());
         } catch (IOException e) {
